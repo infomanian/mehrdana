@@ -17,6 +17,7 @@ export type TicketType = "in_person" | "online" | "recording_only";
 export type PaymentGateway = "fidibo" | "stripe" | "paypal";
 export type CurrencyCode = "IRR" | "USD";
 export type TicketStatus = "pending" | "verified" | "rejected";
+export type ReportStatus = "open" | "resolved";
 
 export type Database = {
   public: {
@@ -263,6 +264,99 @@ export type Database = {
           },
         ];
       };
+      event_messages: {
+        Row: {
+          id: string;
+          event_id: string;
+          sender_id: string;
+          content: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          event_id: string;
+          sender_id: string;
+          content: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          event_id?: string;
+          sender_id?: string;
+          content?: string;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "event_messages_event_id_fkey";
+            columns: ["event_id"];
+            isOneToOne: false;
+            referencedRelation: "events";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "event_messages_sender_id_fkey";
+            columns: ["sender_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      user_blocks: {
+        Row: {
+          id: string;
+          blocker_id: string;
+          blocked_id: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          blocker_id: string;
+          blocked_id: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          blocker_id?: string;
+          blocked_id?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      reports: {
+        Row: {
+          id: string;
+          reporter_id: string;
+          reported_user_id: string;
+          message_id: string | null;
+          reason: string;
+          note: string | null;
+          status: ReportStatus;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          reporter_id: string;
+          reported_user_id: string;
+          message_id?: string | null;
+          reason: string;
+          note?: string | null;
+          status?: ReportStatus;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          reporter_id?: string;
+          reported_user_id?: string;
+          message_id?: string | null;
+          reason?: string;
+          note?: string | null;
+          status?: ReportStatus;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
       event_access: {
         Row: {
           event_id: string;
@@ -331,6 +425,34 @@ export type Database = {
           ticket_id: string | null;
         }[];
       };
+      get_event_messages: {
+        Args: { p_event_id: string; p_before?: string | null; p_limit?: number };
+        Returns: {
+          id: string;
+          event_id: string;
+          sender_id: string;
+          content: string;
+          created_at: string;
+          sender_name: string | null;
+          sender_avatar: string | null;
+        }[];
+      };
+      get_reports: {
+        Args: Record<string, never>;
+        Returns: {
+          id: string;
+          reason: string;
+          note: string | null;
+          status: ReportStatus;
+          created_at: string;
+          reporter_name: string | null;
+          reported_name: string | null;
+          message_content: string | null;
+          message_id: string | null;
+          event_id: string | null;
+          event_title: string | null;
+        }[];
+      };
     };
     Enums: {
       user_role: UserRole;
@@ -339,6 +461,7 @@ export type Database = {
       payment_gateway: PaymentGateway;
       currency_code: CurrencyCode;
       ticket_status: TicketStatus;
+      report_status: ReportStatus;
     };
     CompositeTypes: { [_ in never]: never };
   };

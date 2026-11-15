@@ -32,6 +32,12 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               >
                 بلیت‌ها
               </Link>
+              <Link
+                href="/admin/reports"
+                className="rounded-full px-3 py-1.5 text-sm font-medium text-navy-900 hover:bg-canvas"
+              >
+                گزارش‌ها
+              </Link>
             </nav>
           </div>
 
