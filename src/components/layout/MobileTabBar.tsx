@@ -47,7 +47,9 @@ export function MobileTabBar() {
             );
           }
 
-          const isActive = pathname === item.href;
+          const isActive =
+            pathname === item.href ||
+            (item.href !== "/" && pathname.startsWith(`${item.href}/`));
 
           return (
             <li key={item.id}>

@@ -63,6 +63,37 @@ Run this once in the SQL Editor after the first user signs up (Module 2):
 update public.profiles set role = 'admin' where id = '<USER-UUID>';
 ```
 
+## Authentication setup (Module 2)
+
+Sign-in is passwordless: the user enters an email address and receives a
+6-digit one-time code. Phone (SMS OTP via Kavenegar) is planned for a later
+module and will use Supabase's **Send SMS Hook**; nothing in the current code
+needs to change for it.
+
+Apply `migrations/0009_ticket_history.sql` before opening `/profile`, because
+the "tickets & payments" tab reads `get_my_ticket_history()`.
+
+Then configure the Supabase dashboard:
+
+1. **Authentication → Providers → Email**: keep it enabled.
+2. **Authentication → Email Templates → Magic Link**: replace
+   `{{ .ConfirmationURL }}` with `{{ .Token }}`. The app asks for a code, not a
+   link, so the template must contain the 6-digit token.
+3. **Authentication → Settings**:
+   - OTP expiry: **120 seconds** or less (codes are short-lived by design).
+   - OTP length: **6** (the form expects six digits).
+   - Keep the built-in "minimum interval between OTP sends" at **60 seconds**
+     or more; the login form also locks the resend button for 60 seconds.
+   - Set the **Site URL** to the production domain and add the same domain to
+     **Redirect URLs** if you later add magic links.
+4. **Custom SMTP**: the default Supabase mailer only delivers to members of the
+   project team and has a very low daily cap. Configure your own SMTP provider
+   before inviting real users.
+
+The app never logs codes, sessions or tokens, and the server always re-checks
+the session inside each Server Action — a request that skips the UI cannot
+update somebody else's profile.
+
 ## Realtime
 
 Realtime is intentionally **not** enabled yet. It will be turned on only for

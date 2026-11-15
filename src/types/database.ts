@@ -225,6 +225,22 @@ export type Database = {
         Args: { p_event_id: string };
         Returns: { skyroom_link: string | null; recording_media_url: string | null }[];
       };
+      get_my_ticket_history: {
+        Args: Record<string, never>;
+        Returns: {
+          ticket_id: string;
+          event_id: string;
+          event_title: string;
+          event_date: string;
+          cover_image_url: string | null;
+          ticket_type: TicketType;
+          status: TicketStatus;
+          payment_gateway: PaymentGateway;
+          amount_paid: number | null;
+          currency: CurrencyCode;
+          created_at: string;
+        }[];
+      };
     };
     Enums: {
       user_role: UserRole;

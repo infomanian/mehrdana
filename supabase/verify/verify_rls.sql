@@ -77,3 +77,23 @@ rollback;
 -- set local role authenticated;
 -- select * from public.get_event_access('<EVENT-UUID>');
 -- rollback;
+
+-- CHECK 9 — The profile ticket history is not callable by anonymous visitors.
+-- Expected: ERROR: permission denied for function get_my_ticket_history.
+-- Uncomment and run alone:
+-- begin;
+-- set local role anon;
+-- select * from public.get_my_ticket_history();
+-- rollback;
+
+-- CHECK 10 — A signed-in user only sees their own tickets through the function.
+-- Expected: every returned row belongs to the JWT subject.
+-- begin;
+-- select set_config(
+--   'request.jwt.claims',
+--   '{"sub":"<USER-UUID>","role":"authenticated"}',
+--   true
+-- );
+-- set local role authenticated;
+-- select * from public.get_my_ticket_history();
+-- rollback;

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -54,9 +56,12 @@ export default function HomePage() {
               <ButtonLink href="#features" size="lg">
                 آشنایی با مهر دانا
               </ButtonLink>
-              <p className="text-xs leading-6 text-white/60 sm:text-sm">
-                ثبت‌نام و خرید بلیت در مرحله بعد فعال می‌شود.
-              </p>
+              <Link
+                href="/login"
+                className="text-sm font-medium text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline"
+              >
+                ورود / ثبت‌نام با ایمیل
+              </Link>
             </div>
           </div>
         </Container>
@@ -110,8 +115,8 @@ export default function HomePage() {
               اولین رویدادها به‌زودی
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-sm leading-8 text-ink-muted">
-              فهرست رویدادها، ورود با شماره موبایل و خرید بلیت در مراحل بعدی به همین صفحه اضافه
-              می‌شود. تا آن زمان می‌توانید بخش‌های بالا را ببینید.
+              همین حالا می‌توانید با ایمیل و کد یک‌بارمصرف وارد شوید و پروفایل خود را
+              بسازید. فهرست رویدادها و خرید بلیت در مراحل بعدی به همین صفحه اضافه می‌شود.
             </p>
           </div>
         </Container>
