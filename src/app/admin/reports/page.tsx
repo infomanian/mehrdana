@@ -21,6 +21,8 @@ type ReportRow = {
   created_at: string;
   reporter_name: string | null;
   reported_name: string | null;
+  reported_user_id: string | null;
+  reported_banned: boolean | null;
   message_content: string | null;
   message_id: string | null;
   event_title: string | null;
@@ -90,6 +92,8 @@ export default async function AdminReportsPage() {
                   <ReportActions
                     reportId={report.id}
                     messageId={report.message_id}
+                    reportedUserId={report.reported_user_id}
+                    reportedBanned={report.reported_banned ?? false}
                     status={report.status}
                   />
                 </div>

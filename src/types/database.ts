@@ -34,6 +34,9 @@ export type Database = {
           social_links: Json;
           role: UserRole;
           is_public: boolean;
+          is_banned: boolean;
+          banned_at: string | null;
+          banned_by: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -47,6 +50,9 @@ export type Database = {
           social_links?: Json;
           role?: UserRole;
           is_public?: boolean;
+          is_banned?: boolean;
+          banned_at?: string | null;
+          banned_by?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -60,6 +66,9 @@ export type Database = {
           social_links?: Json;
           role?: UserRole;
           is_public?: boolean;
+          is_banned?: boolean;
+          banned_at?: string | null;
+          banned_by?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -445,6 +454,10 @@ export type Database = {
         Args: Record<string, never>;
         Returns: boolean;
       };
+      is_banned: {
+        Args: Record<string, never>;
+        Returns: boolean;
+      };
       has_event_access: {
         Args: { p_event_id: string };
         Returns: boolean;
@@ -499,6 +512,8 @@ export type Database = {
           created_at: string;
           reporter_name: string | null;
           reported_name: string | null;
+          reported_user_id: string | null;
+          reported_banned: boolean | null;
           message_content: string | null;
           message_id: string | null;
           event_id: string | null;
