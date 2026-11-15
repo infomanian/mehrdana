@@ -16,10 +16,13 @@ Row Level Security (RLS) rules that protect it.
 Event chat, connections, direct messages, blocks and reports are added in their
 own phases (4 and 5).
 
+Module 3 adds the `event-covers` storage bucket (public read, admin-only write)
+and a covering index for the showcase filters; see `migrations/0010_event_covers.sql`.
+
 ## How to apply
 
 1. Open your Supabase project → **SQL Editor**.
-2. Run the files in `migrations/` **in numeric order** (0001 → 0008). Each file
+2. Run the files in `migrations/` **in numeric order** (0001 → 0010). Each file
    is safe to re-run.
 3. Run `verify/verify_rls.sql` and confirm every check matches the expected
    result written above the query.

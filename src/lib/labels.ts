@@ -1,5 +1,6 @@
 import type {
   CurrencyCode,
+  EventStatus,
   PaymentGateway,
   TicketStatus,
   TicketType,
@@ -11,6 +12,12 @@ export const ticketTypeLabels: Record<TicketType, string> = {
   in_person: "حضوری",
   online: "آنلاین",
   recording_only: "فقط ضبط",
+};
+
+export const eventStatusLabels: Record<EventStatus, string> = {
+  upcoming: "پیشرو",
+  live: "در حال برگزاری",
+  past: "برگزارشده",
 };
 
 export const ticketStatusLabels: Record<TicketStatus, string> = {

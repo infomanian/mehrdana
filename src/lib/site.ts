@@ -20,12 +20,12 @@ export type NavItem = {
 };
 
 export const headerNav: NavItem[] = [
-  { id: "events", label: "رویدادها", href: null },
+  { id: "events", label: "رویدادها", href: "/events" },
   { id: "about", label: "درباره مهر دانا", href: "/#features" },
 ];
 
 export const mobileTabNav: NavItem[] = [
-  { id: "events", label: "رویدادها", href: "/" },
+  { id: "events", label: "رویدادها", href: "/events" },
   { id: "my-events", label: "رویدادهای من", href: null },
   { id: "messages", label: "پیام‌ها", href: null },
   { id: "profile", label: "پروفایل", href: "/profile" },

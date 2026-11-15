@@ -48,6 +48,90 @@ export function formatDateTime(value: string | Date): string {
   return dateTimeFormatter.format(date);
 }
 
+/**
+ * Event times are shown in Iran time regardless of where the server runs.
+ * Without this, a UTC server would render a 19:00 Tehran event as 15:30.
+ */
+export const tehranTimeZone = "Asia/Tehran";
+
+const eventDateFormatter = new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+  timeZone: tehranTimeZone,
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const eventDateTimeFormatter = new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+  timeZone: tehranTimeZone,
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+});
+
+export function formatEventDate(value: string | Date): string {
+  const date = typeof value === "string" ? new Date(value) : value;
+  if (Number.isNaN(date.getTime())) return "";
+  return eventDateFormatter.format(date);
+}
+
+export function formatEventDateTime(value: string | Date): string {
+  const date = typeof value === "string" ? new Date(value) : value;
+  if (Number.isNaN(date.getTime())) return "";
+  return eventDateTimeFormatter.format(date);
+}
+
+const eventTimeFormatter = new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+  timeZone: tehranTimeZone,
+  hour: "2-digit",
+  minute: "2-digit",
+});
+
+export function formatEventTime(value: string | Date): string {
+  const date = typeof value === "string" ? new Date(value) : value;
+  if (Number.isNaN(date.getTime())) return "";
+  return eventTimeFormatter.format(date);
+}
+
+const inputPartsFormatter = new Intl.DateTimeFormat("en-GB", {
+  timeZone: tehranTimeZone,
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  hourCycle: "h23",
+});
+
+/** ISO date -> the `YYYY-MM-DDTHH:mm` value a datetime-local input expects (Tehran). */
+export function toTehranDateTimeInput(value: string | Date): string {
+  const date = typeof value === "string" ? new Date(value) : value;
+  if (Number.isNaN(date.getTime())) return "";
+
+  const parts = inputPartsFormatter.formatToParts(date);
+  const get = (type: string) => parts.find((part) => part.type === type)?.value ?? "";
+
+  return `${get("year")}-${get("month")}-${get("day")}T${get("hour")}:${get("minute")}`;
+}
+
+/**
+ * Tehran is a fixed +03:30 offset (no daylight saving since 2022). Parsing the
+ * admin input manually avoids the server's own timezone leaking into the value.
+ * Invalid calendar dates such as 2026-02-30 are rejected instead of rolling over.
+ */
+export function parseTehranDateTimeInput(value: string): Date | null {
+  const match = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/.exec(value.trim());
+  if (!match) return null;
+
+  const [, year, month, day, hour, minute] = match;
+  const date = new Date(`${year}-${month}-${day}T${hour}:${minute}:00+03:30`);
+  if (Number.isNaN(date.getTime())) return null;
+  if (toTehranDateTimeInput(date) !== value.trim()) return null;
+
+  return date;
+}
+
 const yearFormatter = new Intl.DateTimeFormat("fa-IR-u-ca-persian", { year: "numeric" });
 
 /** Current year in the Persian calendar, e.g. ۱۴۰۵. */

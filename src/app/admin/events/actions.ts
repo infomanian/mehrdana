@@ -1,0 +1,147 @@
+"use server";
+
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+
+import { requireAdmin } from "@/lib/admin";
+import {
+  formUuid,
+  isEventCoverPath,
+  parseEventAccessForm,
+  parseEventForm,
+} from "@/lib/event-validation";
+
+import type { EventActionState } from "./state";
+
+function revalidateEvent(id?: string): void {
+  revalidatePath("/events");
+  revalidatePath("/admin/events");
+
+  if (id) {
+    revalidatePath(`/events/${id}`);
+    revalidatePath(`/events/${id}/attendees`);
+    revalidatePath(`/events/${id}/chat`);
+    revalidatePath(`/admin/events/${id}`);
+  }
+}
+
+const GENERIC_ERROR = "ذخیره تغییرات انجام نشد. چند لحظه بعد دوباره تلاش کنید.";
+
+export async function createEvent(
+  _previous: EventActionState,
+  formData: FormData,
+): Promise<EventActionState> {
+  const { supabase } = await requireAdmin("/admin/events/new");
+  const { data, errors } = parseEventForm(formData);
+
+  if (!data) {
+    return { errors, message: "لطفاً موارد مشخص‌شده را اصلاح کنید." };
+  }
+
+  const { data: created, error } = await supabase
+    .from("events")
+    .insert(data)
+    .select("id")
+    .single();
+
+  if (error || !created) {
+    return {
+      message:
+        error?.code === "23503"
+          ? "دسته‌بندی یا سخنران انتخاب‌شده دیگر وجود ندارد."
+          : GENERIC_ERROR,
+    };
+  }
+
+  revalidateEvent(created.id);
+  redirect(`/admin/events/${created.id}`);
+}
+
+export async function updateEvent(
+  _previous: EventActionState,
+  formData: FormData,
+): Promise<EventActionState> {
+  const id = formUuid(formData, "id");
+  if (!id) return { message: "شناسه رویداد معتبر نیست." };
+
+  const { supabase } = await requireAdmin(`/admin/events/${id}`);
+  const { data, errors } = parseEventForm(formData);
+
+  if (!data) {
+    return { errors, message: "لطفاً موارد مشخص‌شده را اصلاح کنید." };
+  }
+
+  const { error } = await supabase.from("events").update(data).eq("id", id);
+
+  if (error) {
+    return {
+      message:
+        error.code === "23503"
+          ? "دسته‌بندی یا سخنران انتخاب‌شده دیگر وجود ندارد."
+          : GENERIC_ERROR,
+    };
+  }
+
+  revalidateEvent(id);
+  return { ok: true, message: "تغییرات رویداد ذخیره شد." };
+}
+
+export async function updateEventAccess(
+  _previous: EventActionState,
+  formData: FormData,
+): Promise<EventActionState> {
+  const id = formUuid(formData, "id");
+  if (!id) return { message: "شناسه رویداد معتبر نیست." };
+
+  const { supabase } = await requireAdmin(`/admin/events/${id}`);
+  const { data, errors } = parseEventAccessForm(formData);
+
+  if (!data) {
+    return { errors, message: "لطفاً موارد مشخص‌شده را اصلاح کنید." };
+  }
+
+  const { error } = await supabase
+    .from("event_access")
+    .upsert({ event_id: id, ...data }, { onConflict: "event_id" });
+
+  if (error) return { message: GENERIC_ERROR };
+
+  revalidateEvent(id);
+  return { ok: true, message: "لینک‌های اختصاصی ذخیره شد." };
+}
+
+/**
+ * Stores the public URL of a freshly uploaded cover. The browser uploads the
+ * file straight to Storage; only the path is sent here, and it must be the
+ * exact path the uploader writes inside this event's folder.
+ */
+export async function saveEventCover(
+  eventId: string,
+  path: string,
+): Promise<{ ok: boolean; message?: string }> {
+  const { supabase } = await requireAdmin(`/admin/events/${eventId}`);
+
+  if (!isEventCoverPath(eventId, path)) {
+    return { ok: false, message: "مسیر تصویر معتبر نیست." };
+  }
+
+  const { data } = supabase.storage.from("event-covers").getPublicUrl(path);
+  if (!data.publicUrl) return { ok: false, message: "آدرس تصویر ساخته نشد." };
+
+  // A version suffix defeats the browser cache after re-uploading.
+  const versioned = `${data.publicUrl}?v=${Date.now()}`;
+
+  const { data: updated, error } = await supabase
+    .from("events")
+    .update({ cover_image_url: versioned })
+    .eq("id", eventId)
+    .select("id")
+    .maybeSingle();
+
+  if (error || !updated) {
+    return { ok: false, message: "ذخیره تصویر انجام نشد. دوباره تلاش کنید." };
+  }
+
+  revalidateEvent(eventId);
+  return { ok: true };
+}

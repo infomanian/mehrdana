@@ -4,7 +4,7 @@ import Link from "next/link";
 import { signOutAction } from "@/app/actions";
 import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
+import { Button, ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { SwitchSubmit } from "@/components/ui/SwitchSubmit";
@@ -95,10 +95,20 @@ export default async function ProfilePage({
     <section className="py-8 sm:py-12">
       <Container>
         <div className="mx-auto w-full max-w-4xl">
-          <h1 className="text-2xl font-bold text-navy-900 sm:text-3xl">پروفایل من</h1>
-          <p className="mt-2 text-sm leading-7 text-ink-muted">
-            اطلاعات عمومی، حریم خصوصی و سابقه بلیت‌های خود را از اینجا مدیریت کنید.
-          </p>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h1 className="text-2xl font-bold text-navy-900 sm:text-3xl">پروفایل من</h1>
+              <p className="mt-2 text-sm leading-7 text-ink-muted">
+                اطلاعات عمومی، حریم خصوصی و سابقه بلیت‌های خود را از اینجا مدیریت کنید.
+              </p>
+            </div>
+
+            {profile.role === "admin" ? (
+              <ButtonLink href="/admin/events" variant="outline" size="sm">
+                مدیریت رویدادها
+              </ButtonLink>
+            ) : null}
+          </div>
 
           {!profile.full_name ? (
             <p className="mt-4 rounded-xl border border-accent/25 bg-accent/8 px-4 py-3 text-xs leading-6 text-accent-strong">

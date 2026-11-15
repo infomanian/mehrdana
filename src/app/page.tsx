@@ -24,7 +24,12 @@ const features = [
   },
 ];
 
-const categories = ["روان‌شناسی", "فلسفه", "بیزنس", "نوروساینس"];
+const categories = [
+  { name: "روان‌شناسی", slug: "psychology" },
+  { name: "فلسفه", slug: "philosophy" },
+  { name: "بیزنس", slug: "business" },
+  { name: "نوروساینس", slug: "neuroscience" },
+];
 
 export default function HomePage() {
   return (
@@ -53,14 +58,14 @@ export default function HomePage() {
             </p>
 
             <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <ButtonLink href="#features" size="lg">
-                آشنایی با مهر دانا
+              <ButtonLink href="/events" size="lg">
+                دیدن رویدادها
               </ButtonLink>
               <Link
-                href="/login"
+                href="#features"
                 className="text-sm font-medium text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline"
               >
-                ورود / ثبت‌نام با ایمیل
+                آشنایی با مهر دانا
               </Link>
             </div>
           </div>
@@ -72,13 +77,12 @@ export default function HomePage() {
           <ul className="flex flex-wrap items-center gap-2">
             <li className="text-xs text-ink-muted">دسته‌بندی‌ها:</li>
             {categories.map((category) => (
-              <li key={category}>
-                <Badge tone="navy">{category}</Badge>
+              <li key={category.slug}>
+                <Link href={`/events?category=${category.slug}`}>
+                  <Badge tone="navy">{category.name}</Badge>
+                </Link>
               </li>
             ))}
-            <li>
-              <Badge>و دسته‌های بیشتر</Badge>
-            </li>
           </ul>
         </Container>
       </section>
@@ -110,14 +114,17 @@ export default function HomePage() {
       <section className="pb-16 sm:pb-20">
         <Container>
           <div className="rounded-2xl border border-dashed border-line bg-surface px-6 py-10 text-center sm:px-10">
-            <Badge tone="verified">در حال آماده‌سازی</Badge>
+            <Badge tone="verified">ویترین رویدادها</Badge>
             <h2 className="mt-4 text-xl font-bold text-navy-900 sm:text-2xl">
-              اولین رویدادها به‌زودی
+              رویدادهای حضوری و آنلاین را ببینید
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-sm leading-8 text-ink-muted">
-              همین حالا می‌توانید با ایمیل و کد یک‌بارمصرف وارد شوید و پروفایل خود را
-              بسازید. فهرست رویدادها و خرید بلیت در مراحل بعدی به همین صفحه اضافه می‌شود.
+              در فهرست رویدادها، بر اساس دسته‌بندی و وضعیت جستجو کنید و بلیت رویداد
+              موردعلاقه خود را تهیه کنید.
             </p>
+            <ButtonLink href="/events" variant="navy" className="mt-6">
+              مشاهده رویدادها
+            </ButtonLink>
           </div>
         </Container>
       </section>

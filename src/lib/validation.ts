@@ -8,6 +8,14 @@
 
 export type FieldErrors = Partial<Record<string, string>>;
 
+const UUID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+/** UUIDs arrive from URLs and forms, so every lookup checks the shape first. */
+export function isUuid(value: string): boolean {
+  return UUID_PATTERN.test(value);
+}
+
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 /** Persian (۰-۹) and Arabic-Indic (٠-٩) digits to ASCII. */
