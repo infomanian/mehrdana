@@ -94,8 +94,10 @@ create policy "direct_messages_insert"
 
 -- ---------------------------------------------------------------------------
 -- Reports read model now exposes the reported user id (for the ban action).
+-- The return type changes, so the function must be dropped before recreation.
 -- ---------------------------------------------------------------------------
-create or replace function public.get_reports()
+drop function if exists public.get_reports();
+create function public.get_reports()
 returns table (
   id uuid,
   reason text,
