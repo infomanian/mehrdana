@@ -32,3 +32,13 @@ We are building a Persian-language (RTL) web platform and PWA for simultaneous i
 - **Plain Language Communication:** Always explain plans, bugs, trade-offs, and questions in simple, clear, non-technical Persian.
 - **Simplicity & Consistency:** Keep UI and features minimal. Reuse existing components and patterns across the site so the codebase stays unified and clean.
 - **Performance, SEO & Responsive:** Ensure every page is mobile-first responsive, optimized for SEO (semantic HTML/metadata), and avoids unnecessary database queries.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
