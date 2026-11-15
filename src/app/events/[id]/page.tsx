@@ -22,6 +22,7 @@ import {
   type EventAccessLinks,
 } from "@/lib/events";
 import { getServerClient } from "@/lib/supabase/server";
+import { paypalConfig, stripeConfig } from "@/lib/server-env";
 
 export async function generateMetadata({
   params,
@@ -86,11 +87,17 @@ function eventJsonLd(event: NonNullable<Awaited<ReturnType<typeof getEventDetail
 
 export default async function EventDetailPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ checkout?: string | string[] }>;
 }) {
   const { id } = await params;
   if (!isEventId(id)) notFound();
+
+  const sp = await searchParams;
+  const checkoutParam = Array.isArray(sp.checkout) ? sp.checkout[0] : sp.checkout;
+  const checkoutStatus = checkoutParam === "success" || checkoutParam === "cancelled" ? checkoutParam : null;
 
   if (!isSupabaseConfigured) {
     return (
@@ -194,6 +201,23 @@ export default async function EventDetailPage({
 
       <EventTabs eventId={id} />
 
+      {checkoutStatus ? (
+        <div className="border-b border-line bg-canvas">
+          <Container className="py-3">
+            <p
+              role="status"
+              className="text-center text-xs leading-6 text-ink-muted"
+            >
+              {checkoutStatus === "cancelled"
+                ? "پرداخت لغو شد یا تکمیل نشد. در صورت کسر وجه، به‌زودی بازگردانده می‌شود."
+                : verified.length > 0
+                  ? "پرداخت شما تأیید شد و بلیت صادر شد."
+                  : "پرداخت شما در حال نهایی شدن است؛ چند لحظه بعد صفحه را تازه کنید."}
+            </p>
+          </Container>
+        </div>
+      ) : null}
+
       <section className="py-8 sm:py-10">
         <Container>
           <div className="grid items-start gap-6 lg:grid-cols-[1fr_21rem]">
@@ -216,6 +240,10 @@ export default async function EventDetailPage({
                 tickets={tickets}
                 access={access}
                 isAuthenticated={Boolean(user)}
+                gateways={{
+                  stripe: stripeConfig.configured,
+                  paypal: paypalConfig.configured,
+                }}
               />
             </div>
           </div>

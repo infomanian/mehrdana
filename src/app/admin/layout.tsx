@@ -26,6 +26,12 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               >
                 رویدادها
               </Link>
+              <Link
+                href="/admin/tickets"
+                className="rounded-full px-3 py-1.5 text-sm font-medium text-navy-900 hover:bg-canvas"
+              >
+                بلیت‌ها
+              </Link>
             </nav>
           </div>
 

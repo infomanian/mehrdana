@@ -3,14 +3,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { EventStatusBadge } from "@/components/events/EventStatusBadge";
+import { Card } from "@/components/ui/Card";
 import { requireAdmin } from "@/lib/admin";
 import { toTehranDateTimeInput } from "@/lib/format";
 import { getEventDetail, listCategories, listSpeakers } from "@/lib/events";
+import { ticketTypeLabels } from "@/lib/labels";
 import { isUuid } from "@/lib/validation";
 
 import { CoverUploader } from "../CoverUploader";
 import { EventAccessForm } from "../EventAccessForm";
 import { EventForm, type EventFormDefaults } from "../EventForm";
+import { FidiboCodesForm } from "../FidiboCodesForm";
 
 export const metadata: Metadata = {
   title: "ویرایش رویداد",
@@ -35,7 +38,7 @@ export default async function EditEventPage({
 
   const { supabase } = await requireAdmin(`/admin/events/${id}`);
 
-  const [event, categories, speakers, accessResult] = await Promise.all([
+  const [event, categories, speakers, accessResult, codesResult] = await Promise.all([
     getEventDetail(id),
     listCategories(),
     listSpeakers(),
@@ -44,12 +47,20 @@ export default async function EditEventPage({
       .select("skyroom_link, recording_media_url")
       .eq("event_id", id)
       .maybeSingle(),
+    supabase
+      .from("valid_fidibo_codes")
+      .select("id, code, ticket_type, is_used, used_at")
+      .eq("event_id", id)
+      .order("created_at", { ascending: false })
+      .limit(200),
   ]);
 
   if (!event) notFound();
   if (accessResult.error) throw new Error("event-access-unavailable");
+  if (codesResult.error) throw new Error("fidibo-codes-unavailable");
 
   const access = accessResult.data;
+  const codes = codesResult.data ?? [];
   const defaults: EventFormDefaults = {
     title: event.title,
     description: event.description ?? "",
@@ -104,6 +115,43 @@ export default async function EditEventPage({
           skyroomLink={access?.skyroom_link ?? ""}
           recordingUrl={access?.recording_media_url ?? ""}
         />
+      </div>
+
+      <div className="grid items-start gap-5 lg:grid-cols-2">
+        <FidiboCodesForm eventId={id} />
+
+        <Card className="p-5 sm:p-6">
+          <h2 className="text-base font-bold text-navy-900">کدهای ثبت‌شده ({codes.length})</h2>
+          {codes.length === 0 ? (
+            <p className="mt-2 text-sm leading-7 text-ink-muted">
+              هنوز کدی ثبت نشده است.
+            </p>
+          ) : (
+            <ul className="mt-3 max-h-80 divide-y divide-line overflow-y-auto">
+              {codes.map((code) => (
+                <li key={code.id} className="flex items-center justify-between gap-3 py-2.5">
+                  <div className="min-w-0">
+                    <p dir="ltr" className="truncate text-start text-xs font-medium text-navy-900">
+                      {code.code}
+                    </p>
+                    <p className="text-[11px] text-ink-muted">
+                      {ticketTypeLabels[code.ticket_type]}
+                    </p>
+                  </div>
+                  <span
+                    className={
+                      code.is_used
+                        ? "shrink-0 rounded-full bg-canvas px-2.5 py-0.5 text-[11px] text-ink-muted"
+                        : "shrink-0 rounded-full bg-verified/12 px-2.5 py-0.5 text-[11px] font-medium text-verified-strong"
+                    }
+                  >
+                    {code.is_used ? "استفاده‌شده" : "آزاد"}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </Card>
       </div>
     </div>
   );

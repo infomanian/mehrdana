@@ -27,6 +27,57 @@ function revalidateEvent(id?: string): void {
 
 const GENERIC_ERROR = "ذخیره تغییرات انجام نشد. چند لحظه بعد دوباره تلاش کنید.";
 
+const TICKET_TYPES = ["in_person", "online", "recording_only"] as const;
+
+export type FidiboCodesState = { ok?: boolean; message?: string };
+
+/**
+ * Bulk-adds Fidibo codes for an event. One code per line; codes are trimmed and
+ * uppercased, duplicates are ignored. Only the codes table is touched.
+ */
+export async function addFidiboCodes(
+  _previous: FidiboCodesState,
+  formData: FormData,
+): Promise<FidiboCodesState> {
+  const eventId = formUuid(formData, "event_id");
+  if (!eventId) return { message: "شناسه رویداد معتبر نیست." };
+
+  const { supabase } = await requireAdmin(`/admin/events/${eventId}`);
+
+  const ticketType = String(formData.get("ticket_type") ?? "");
+  if (!TICKET_TYPES.includes(ticketType as (typeof TICKET_TYPES)[number])) {
+    return { message: "نوع بلیت معتبر نیست." };
+  }
+
+  const codes = Array.from(
+    new Set(
+      String(formData.get("codes") ?? "")
+        .split(/\r?\n/)
+        .map((line) => line.trim().toUpperCase())
+        .filter((line) => line.length >= 4 && line.length <= 64),
+    ),
+  );
+
+  if (codes.length === 0) {
+    return { message: "حداقل یک کد معتبر (۴ تا ۶۴ نویسه) وارد کنید." };
+  }
+
+  const rows = codes.map((code) => ({
+    event_id: eventId,
+    code,
+    ticket_type: ticketType as (typeof TICKET_TYPES)[number],
+  }));
+
+  const { error } = await supabase
+    .from("valid_fidibo_codes")
+    .upsert(rows, { onConflict: "event_id,code", ignoreDuplicates: true });
+
+  if (error) return { message: GENERIC_ERROR };
+
+  revalidatePath(`/admin/events/${eventId}`);
+  return { ok: true, message: `${codes.length} کد ثبت شد. کدهای تکراری نادیده گرفته شد.` };
+}
+
 export async function createEvent(
   _previous: EventActionState,
   formData: FormData,

@@ -2,6 +2,8 @@ import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { CheckoutButtons, type CheckoutOption } from "@/components/events/CheckoutButtons";
+import { FidiboCodeForm } from "@/components/events/FidiboCodeForm";
 import {
   ExternalLinkIcon,
   LockIcon,
@@ -49,13 +51,13 @@ function PriceRow({
 
 function verifiedTypeLabels(tickets: OwnTicketRow[]): string {
   const types = Array.from(
-    new Set(
-      tickets.map((ticket) => ticket.ticket_type as TicketType),
-    ),
+    new Set(tickets.map((ticket) => ticket.ticket_type as TicketType)),
   ).map((type) => ticketTypeLabels[type]);
 
   return types.join("، ");
 }
+
+export type Gateways = { stripe: boolean; paypal: boolean };
 
 /**
  * The public purchase box plus the private access box.
@@ -69,11 +71,13 @@ export function EventTicketPanel({
   tickets,
   access,
   isAuthenticated,
+  gateways,
 }: {
   event: EventDetailRow;
   tickets: OwnTicketRow[] | null;
   access: EventAccessLinks | null;
   isAuthenticated: boolean;
+  gateways: Gateways;
 }) {
   const verified = (tickets ?? []).filter((ticket) => ticket.status === "verified");
   const pending = (tickets ?? []).filter((ticket) => ticket.status === "pending");
@@ -88,6 +92,19 @@ export function EventTicketPanel({
     event.price_online_usd !== null ||
     event.recording_price_irr !== null ||
     event.recording_price_usd !== null;
+
+  const checkoutOptions: CheckoutOption[] = isPast
+    ? event.recording_price_usd !== null
+      ? [{ ticketType: "recording_only", label: "ضبط رویداد", usd: event.recording_price_usd }]
+      : []
+    : [
+        ...(event.price_in_person_usd !== null
+          ? [{ ticketType: "in_person" as TicketType, label: "حضوری", usd: event.price_in_person_usd }]
+          : []),
+        ...(event.price_online_usd !== null
+          ? [{ ticketType: "online" as TicketType, label: "آنلاین", usd: event.price_online_usd }]
+          : []),
+      ];
 
   return (
     <div className="space-y-4">
@@ -128,25 +145,53 @@ export function EventTicketPanel({
           </p>
         ) : null}
 
-        {event.fidibo_url ? (
-          <ButtonLink
-            href={event.fidibo_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 w-full"
-          >
-            خرید از فیدیبو
-            <ExternalLinkIcon className="size-4" />
-          </ButtonLink>
-        ) : (
-          <p className="mt-4 rounded-xl border border-dashed border-line px-3 py-2 text-xs leading-6 text-ink-muted">
-            خرید بلیت به‌زودی از همین صفحه فعال می‌شود.
-          </p>
-        )}
+        <div className="mt-4 border-t border-line pt-4">
+          <p className="text-xs font-bold text-navy-900">خرید در ایران (فیدیبو)</p>
 
-        <p className="mt-3 text-[11px] leading-6 text-ink-muted">
-          ثبت کد بلیت فیدیبو و پرداخت دلاری (استرایپ/پی‌پال) در مرحله بعد فعال می‌شود.
-        </p>
+          {event.fidibo_url ? (
+            <ButtonLink
+              href={event.fidibo_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="outline"
+              size="sm"
+              className="mt-2 w-full"
+            >
+              خرید از فیدیبو
+              <ExternalLinkIcon className="size-4" />
+            </ButtonLink>
+          ) : (
+            <p className="mt-2 rounded-xl border border-dashed border-line px-3 py-2 text-xs leading-6 text-ink-muted">
+              لینک خرید فیدیبو به‌زودی اضافه می‌شود.
+            </p>
+          )}
+
+          {isAuthenticated ? (
+            <FidiboCodeForm eventId={event.id} />
+          ) : (
+            <p className="mt-2 text-[11px] leading-6 text-ink-muted">
+              برای ثبت کد بلیت فیدیبو ابتدا وارد حساب شوید.
+            </p>
+          )}
+        </div>
+
+        {checkoutOptions.length > 0 ? (
+          <div className="mt-4 border-t border-line pt-4">
+            <p className="text-xs font-bold text-navy-900">خرید بین‌المللی (کارت دلاری)</p>
+
+            {isAuthenticated ? (
+              <CheckoutButtons
+                eventId={event.id}
+                options={checkoutOptions}
+                gateways={gateways}
+              />
+            ) : (
+              <p className="mt-2 text-[11px] leading-6 text-ink-muted">
+                برای خرید دلاری با استرایپ یا پی‌پال وارد حساب شوید.
+              </p>
+            )}
+          </div>
+        ) : null}
       </Card>
 
       <Card className="p-5">
@@ -171,11 +216,7 @@ export function EventTicketPanel({
               بلیت‌های {verifiedTypeLabels(verified)} شما تأیید شده است.
             </p>
 
-            <ButtonLink
-              href={`/events/${event.id}/chat`}
-              className="w-full"
-              size="md"
-            >
+            <ButtonLink href={`/events/${event.id}/chat`} className="w-full" size="md">
               ورود به اتاق گفتگو
             </ButtonLink>
 
@@ -224,18 +265,6 @@ export function EventTicketPanel({
               برای این رویداد بلیت تأییدشده‌ای برای حساب شما ثبت نشده است. پس از
               خرید و تأیید بلیت، اتاق گفتگو و لینک‌های اختصاصی باز می‌شود.
             </p>
-            {event.fidibo_url ? (
-              <ButtonLink
-                href={event.fidibo_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="outline"
-                size="sm"
-                className="mt-3"
-              >
-                تهیه بلیت از فیدیبو
-              </ButtonLink>
-            ) : null}
           </div>
         )}
       </Card>

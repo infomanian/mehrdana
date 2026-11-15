@@ -172,6 +172,7 @@ export type Database = {
           amount_paid: number | null;
           currency: CurrencyCode;
           external_ticket_code: string | null;
+          payment_reference: string | null;
           status: TicketStatus;
           created_at: string;
           updated_at: string;
@@ -185,6 +186,7 @@ export type Database = {
           amount_paid?: number | null;
           currency: CurrencyCode;
           external_ticket_code?: string | null;
+          payment_reference?: string | null;
           status?: TicketStatus;
           created_at?: string;
           updated_at?: string;
@@ -198,6 +200,7 @@ export type Database = {
           amount_paid?: number | null;
           currency?: CurrencyCode;
           external_ticket_code?: string | null;
+          payment_reference?: string | null;
           status?: TicketStatus;
           created_at?: string;
           updated_at?: string;
@@ -215,6 +218,47 @@ export type Database = {
             columns: ["user_id"];
             isOneToOne: false;
             referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      valid_fidibo_codes: {
+        Row: {
+          id: string;
+          event_id: string;
+          code: string;
+          ticket_type: TicketType;
+          is_used: boolean;
+          used_by: string | null;
+          used_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          event_id: string;
+          code: string;
+          ticket_type: TicketType;
+          is_used?: boolean;
+          used_by?: string | null;
+          used_at?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          event_id?: string;
+          code?: string;
+          ticket_type?: TicketType;
+          is_used?: boolean;
+          used_by?: string | null;
+          used_at?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "valid_fidibo_codes_event_id_fkey";
+            columns: ["event_id"];
+            isOneToOne: false;
+            referencedRelation: "events";
             referencedColumns: ["id"];
           },
         ];
@@ -277,6 +321,14 @@ export type Database = {
           amount_paid: number | null;
           currency: CurrencyCode;
           created_at: string;
+        }[];
+      };
+      verify_fidibo_code: {
+        Args: { p_event_id: string; p_code: string };
+        Returns: {
+          status: string;
+          ticket_type: TicketType | null;
+          ticket_id: string | null;
         }[];
       };
     };
