@@ -34,6 +34,13 @@ export function UserMenu({ email }: { email: string | null }) {
           پروفایل من
         </Link>
 
+        <Link
+          href="/messages"
+          className="block rounded-xl px-3 py-2 text-sm text-ink transition-colors hover:bg-canvas"
+        >
+          پیام‌ها و ارتباطات
+        </Link>
+
         <form action={signOutAction}>
           <button
             type="submit"

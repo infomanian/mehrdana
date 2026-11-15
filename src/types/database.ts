@@ -18,6 +18,7 @@ export type PaymentGateway = "fidibo" | "stripe" | "paypal";
 export type CurrencyCode = "IRR" | "USD";
 export type TicketStatus = "pending" | "verified" | "rejected";
 export type ReportStatus = "open" | "resolved";
+export type ConnectionStatus = "pending" | "accepted" | "rejected";
 
 export type Database = {
   public: {
@@ -357,6 +358,57 @@ export type Database = {
         };
         Relationships: [];
       };
+      connections: {
+        Row: {
+          id: string;
+          requester_id: string;
+          receiver_id: string;
+          status: ConnectionStatus;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          requester_id: string;
+          receiver_id: string;
+          status?: ConnectionStatus;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          requester_id?: string;
+          receiver_id?: string;
+          status?: ConnectionStatus;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      direct_messages: {
+        Row: {
+          id: string;
+          connection_id: string;
+          sender_id: string;
+          content: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          connection_id: string;
+          sender_id: string;
+          content: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          connection_id?: string;
+          sender_id?: string;
+          content?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
       event_access: {
         Row: {
           event_id: string;
@@ -453,6 +505,66 @@ export type Database = {
           event_title: string | null;
         }[];
       };
+      can_message_connection: {
+        Args: { p_connection_id: string };
+        Returns: boolean;
+      };
+      get_event_attendees: {
+        Args: { p_event_id: string; p_interest?: string | null; p_common?: boolean };
+        Returns: {
+          id: string;
+          full_name: string | null;
+          avatar_url: string | null;
+          profession: string | null;
+          bio: string | null;
+          interests: string[];
+          social_links: Json;
+          matched_interests: string[];
+        }[];
+      };
+      get_conversations: {
+        Args: Record<string, never>;
+        Returns: {
+          connection_id: string;
+          other_id: string;
+          other_name: string | null;
+          other_avatar: string | null;
+          other_profession: string | null;
+          last_message: string | null;
+          last_message_at: string | null;
+        }[];
+      };
+      get_incoming_requests: {
+        Args: Record<string, never>;
+        Returns: {
+          connection_id: string;
+          user_id: string;
+          full_name: string | null;
+          avatar_url: string | null;
+          profession: string | null;
+          created_at: string;
+        }[];
+      };
+      get_connection_partner: {
+        Args: { p_connection_id: string };
+        Returns: {
+          other_id: string;
+          other_name: string | null;
+          other_avatar: string | null;
+        }[];
+      };
+      get_direct_messages: {
+        Args: { p_connection_id: string; p_before?: string | null; p_limit?: number };
+        Returns: {
+          id: string;
+          connection_id: string;
+          sender_id: string;
+          content: string;
+          created_at: string;
+          sender_name: string | null;
+          sender_avatar: string | null;
+        }[];
+      };
     };
     Enums: {
       user_role: UserRole;
@@ -462,6 +574,7 @@ export type Database = {
       currency_code: CurrencyCode;
       ticket_status: TicketStatus;
       report_status: ReportStatus;
+      connection_status: ConnectionStatus;
     };
     CompositeTypes: { [_ in never]: never };
   };

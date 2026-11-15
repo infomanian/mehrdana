@@ -27,6 +27,6 @@ export const headerNav: NavItem[] = [
 export const mobileTabNav: NavItem[] = [
   { id: "events", label: "رویدادها", href: "/events" },
   { id: "my-events", label: "رویدادهای من", href: null },
-  { id: "messages", label: "پیام‌ها", href: null },
+  { id: "messages", label: "پیام‌ها", href: "/messages" },
   { id: "profile", label: "پروفایل", href: "/profile" },
 ];
