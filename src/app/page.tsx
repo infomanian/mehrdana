@@ -1,85 +1,131 @@
 import Link from "next/link";
 
-import { Badge } from "@/components/ui/Badge";
+import { ArchArt, DiscArt, RuleArt, SpineArt } from "@/components/home/art";
 import { ButtonLink } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
-import { CalendarIcon, ChatIcon, UsersIcon } from "@/components/ui/icons";
+import { siteConfig } from "@/lib/site";
 
-const features = [
+/** Section eyebrow: a hairline plus a small editorial label. */
+function SectionLabel({ children, tone = "dark" }: { children: React.ReactNode; tone?: "dark" | "light" }) {
+  return (
+    <p
+      className={
+        tone === "light"
+          ? "flex items-center gap-3 text-[11px] font-medium text-cream/60"
+          : "flex items-center gap-3 text-[11px] font-medium text-ink-muted"
+      }
+    >
+      <span
+        aria-hidden="true"
+        className={tone === "light" ? "h-px w-8 bg-cream/35" : "h-px w-8 bg-charcoal/35"}
+      />
+      {children}
+    </p>
+  );
+}
+
+const categories = [
+  { name: "روان‌شناسی", slug: "psychology", note: "ذهن، رابطه، رفتار", Art: SpineArt },
+  { name: "فلسفه", slug: "philosophy", note: "پرسش‌های بی‌پایان", Art: ArchArt },
+  { name: "بیزنس", slug: "business", note: "ساختن و رشد کردن", Art: DiscArt },
+  { name: "نوروساینس", slug: "neuroscience", note: "مغز و تجربه", Art: RuleArt },
+];
+
+const offerings = [
   {
-    icon: CalendarIcon,
-    title: "حضوری یا آنلاین، انتخاب با تو",
-    body: "هر رویداد هم جای فیزیکی دارد و هم پخش زنده؛ بلیت هر کدام جداگانه و شفاف است.",
+    number: "۰۱",
+    title: "رویدادهای حضوری",
+    body: "در یک فضای واقعی، با چای و گفت‌وگوی رو در رو. ظرفیت محدود است و بلیت هر نفر جداگانه ثبت می‌شود.",
   },
   {
-    icon: ChatIcon,
-    title: "اتاق گفتگو، قبل و بعد از رویداد",
-    body: "فقط دارندگان بلیت تأییدشده وارد اتاق می‌شوند؛ فضایی امن با امکان گزارش و مسدودسازی.",
+    number: "۰۲",
+    title: "رویدادهای آنلاین",
+    body: "اگر شهرتان دور است، همان رویداد را زنده از خانه ببینید. بلیت آنلاین از بلیت حضوری جداست.",
   },
   {
-    icon: UsersIcon,
-    title: "آدم‌های هم‌مسیر",
-    body: "شرکت‌کنندگان را بر اساس علاقه پیدا کن، درخواست دوستی بده و خصوصی گفتگو کن.",
+    number: "۰۳",
+    title: "اتاق گفتگوی رویداد",
+    body: "اتاق گفتگو پیش و پس از رویداد باز است؛ فقط برای کسانی که بلیتشان تأیید شده است.",
+  },
+  {
+    number: "۰۴",
+    title: "شبکه‌سازی هدفمند",
+    body: "شرکت‌کنندگان را بر اساس علاقه پیدا کنید، درخواست ارتباط بدهید و خصوصی گفتگو کنید.",
   },
 ];
 
-const categories = [
-  { name: "روان‌شناسی", slug: "psychology" },
-  { name: "فلسفه", slug: "philosophy" },
-  { name: "بیزنس", slug: "business" },
-  { name: "نوروساینس", slug: "neuroscience" },
+const principles = [
+  {
+    number: "۰۱",
+    title: "بلیت تأییدشده",
+    body: "بدون بلیت تأییدشده هیچ‌کس به اتاق گفتگو یا لینک خصوصی رویداد دسترسی ندارد.",
+  },
+  {
+    number: "۰۲",
+    title: "حریم خصوصی",
+    body: "پیام‌های خصوصی و لینک رویدادها محرمانه‌اند و پروفایل را می‌توانید خصوصی نگه دارید.",
+  },
+  {
+    number: "۰۳",
+    title: "گفتگوی محترمانه",
+    body: "گزارش و مسدودسازی در دسترس است تا فضا برای همه امن و آرام بماند.",
+  },
 ];
 
 export default function HomePage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-navy-900 text-white">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-24 -start-24 size-72 rounded-full bg-accent-soft/20 blur-3xl"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -bottom-32 end-0 size-80 rounded-full bg-verified/20 blur-3xl"
-        />
+      {/* Hero ---------------------------------------------------------------- */}
+      <section className="relative">
+        <Container className="pt-10 pb-12 sm:pt-14 lg:pt-16">
+          <div className="grid items-end gap-10 lg:grid-cols-[1.3fr_0.7fr] lg:gap-12">
+            <div>
+              <SectionLabel>باشگاه رویدادهای مهر دانا</SectionLabel>
 
-        <Container className="relative py-14 sm:py-20 lg:py-24">
-          <div className="max-w-3xl">
-            <Badge tone="onDark">رویداد · گفتگو · شبکه‌سازی</Badge>
+              <h1 className="mt-7 font-display text-[clamp(2.9rem,7.4vw,5.6rem)] leading-[1.1] font-medium text-charcoal">
+                دانش. گفت‌وگو.
+                <br />
+                پیوند.
+              </h1>
 
-            <h1 className="mt-5 text-3xl font-bold leading-[1.4] sm:text-4xl sm:leading-[1.35] lg:text-5xl">
-              در رویدادها شرکت کن، با آدم‌های هم‌مسیر آشنا شو
-            </h1>
+              <div aria-hidden="true" className="mt-9 h-px w-full bg-charcoal/25" />
 
-            <p className="mt-4 max-w-2xl text-sm leading-8 text-white/80 sm:text-base sm:leading-8">
-              مهر دانا بستری فارسی برای رویدادهای حضوری و آنلاین روان‌شناسی، فلسفه، بیزنس و
-              نوروساینس است؛ همراه با اتاق گفتگوی زنده و فرصت آشنایی با شرکت‌کنندگان.
-            </p>
+              <p className="mt-6 max-w-xl text-sm leading-8 text-ink-muted sm:text-base sm:leading-9">
+                مهر دانا باشگاهی برای رویدادهای حضوری و آنلاین روان‌شناسی، فلسفه، بیزنس و
+                نوروساینس است؛ جایی برای یاد گرفتن، پرسیدن و آشنا شدن با آدم‌هایی که مثل شما
+                کنجکاوند.
+              </p>
 
-            <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <ButtonLink href="/events" size="lg">
-                دیدن رویدادها
-              </ButtonLink>
-              <Link
-                href="#features"
-                className="text-sm font-medium text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline"
-              >
-                آشنایی با مهر دانا
-              </Link>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <ButtonLink href="/events" size="lg">
+                  دیدن رویدادها
+                </ButtonLink>
+                <ButtonLink href="#about" variant="outline" size="lg">
+                  درباره باشگاه
+                </ButtonLink>
+              </div>
+            </div>
+
+            <div className="relative">
+              <SpineArt className="aspect-[4/3] w-full sm:aspect-[16/9] lg:aspect-[5/6]" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 sm:p-6">
+                <span className="font-display text-lg leading-tight text-cream sm:text-xl">
+                  {siteConfig.name}
+                </span>
+                <span className="text-[11px] text-cream/60">تهران و آنلاین</span>
+              </div>
             </div>
           </div>
-        </Container>
-      </section>
 
-      <section className="border-b border-line bg-surface py-4">
-        <Container>
-          <ul className="flex flex-wrap items-center gap-2">
-            <li className="text-xs text-ink-muted">دسته‌بندی‌ها:</li>
+          <ul className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-rule pt-5 text-xs text-ink-muted sm:text-sm">
+            <li className="text-[11px] text-ink-muted">حوزه‌ها</li>
             {categories.map((category) => (
               <li key={category.slug}>
-                <Link href={`/events?category=${category.slug}`}>
-                  <Badge tone="navy">{category.name}</Badge>
+                <Link
+                  href={`/events?category=${category.slug}`}
+                  className="transition-colors hover:text-clay"
+                >
+                  {category.name}
                 </Link>
               </li>
             ))}
@@ -87,43 +133,147 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section id="features" className="scroll-mt-20 py-14 sm:py-20">
-        <Container>
-          <div className="max-w-2xl">
-            <h2 className="text-2xl font-bold text-navy-900 sm:text-3xl">چرا مهر دانا؟</h2>
-            <p className="mt-3 text-sm leading-8 text-ink-muted sm:text-base">
-              بستری که رویداد و ارتباط انسانی را کنار هم می‌گذارد: یاد می‌گیری، گفتگو می‌کنی و
-              آدم‌های تازه‌ای پیدا می‌کنی.
-            </p>
-          </div>
+      {/* Statement ----------------------------------------------------------- */}
+      <section id="about" className="scroll-mt-20 border-t border-rule">
+        <Container className="py-16 sm:py-20 lg:py-24">
+          <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-3">
+              <SectionLabel>۰۱ — درباره باشگاه</SectionLabel>
+            </div>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map(({ icon: Icon, title, body }) => (
-              <Card key={title} className="p-6">
-                <span className="inline-flex size-11 items-center justify-center rounded-xl bg-navy-800/8 text-navy-800">
-                  <Icon className="size-5" />
-                </span>
-                <h3 className="mt-4 text-base font-bold text-navy-900">{title}</h3>
-                <p className="mt-2 text-sm leading-7 text-ink-muted">{body}</p>
-              </Card>
-            ))}
+            <div className="lg:col-span-9">
+              <h2 className="max-w-3xl font-display text-[clamp(1.9rem,4.4vw,3.4rem)] leading-[1.25] font-medium text-charcoal">
+                یادگیری وقتی بهتر است که مشترک باشد.
+              </h2>
+
+              <div className="mt-7 grid gap-5 text-sm leading-8 text-ink-muted sm:grid-cols-2 sm:gap-8 sm:text-base sm:leading-9">
+                <p>
+                  هر رویداد یک اتاق است: چند نفر، یک موضوع، و وقتی برای فکر کردن با صدای
+                  بلند. مهر دانا می‌خواهد همان اتاق را به شهر شما و به خانه‌ی شما بیاورد.
+                </p>
+                <p>
+                  بعد از پایان رویداد گفت‌وگو تمام نمی‌شود. اتاق گفتگو باز می‌ماند و کسانی که
+                  آن شب آنجا بودند می‌توانند مسیرشان را با هم ادامه بدهند.
+                </p>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
 
-      <section className="pb-16 sm:pb-20">
-        <Container>
-          <div className="rounded-2xl border border-dashed border-line bg-surface px-6 py-10 text-center sm:px-10">
-            <Badge tone="verified">ویترین رویدادها</Badge>
-            <h2 className="mt-4 text-xl font-bold text-navy-900 sm:text-2xl">
-              رویدادهای حضوری و آنلاین را ببینید
-            </h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-8 text-ink-muted">
-              در فهرست رویدادها، بر اساس دسته‌بندی و وضعیت جستجو کنید و بلیت رویداد
-              موردعلاقه خود را تهیه کنید.
+      {/* Offerings ----------------------------------------------------------- */}
+      <section className="bg-charcoal text-cream">
+        <Container className="py-16 sm:py-20 lg:py-24">
+          <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-4">
+              <SectionLabel tone="light">۰۲ — چه چیزی در مهر دانا هست</SectionLabel>
+              <h2 className="mt-5 font-display text-[clamp(1.8rem,4vw,3rem)] leading-[1.3] font-medium">
+                از یک شب گفت‌وگو تا یک شبکه‌ی انسانی.
+              </h2>
+            </div>
+
+            <ul className="lg:col-span-8">
+              {offerings.map((item) => (
+                <li
+                  key={item.number}
+                  className="grid gap-2 border-t border-cream/15 py-6 first:border-t-0 first:pt-0 last:pb-0 sm:grid-cols-[3rem_1fr] sm:gap-6"
+                >
+                  <span className="text-[11px] text-cream/65 sm:pt-2">{item.number}</span>
+                  <div>
+                    <h3 className="font-display text-xl leading-snug sm:text-2xl">{item.title}</h3>
+                    <p className="mt-2 max-w-xl text-sm leading-8 text-cream/65">{item.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Container>
+      </section>
+
+      {/* Principles ---------------------------------------------------------- */}
+      <section className="bg-sage text-charcoal">
+        <Container className="py-16 sm:py-20">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <SectionLabel>۰۳ — قواعد بازی</SectionLabel>
+              <h2 className="mt-5 font-display text-[clamp(1.7rem,3.6vw,2.6rem)] leading-[1.3] font-medium">
+                سه چیزی که سر جایش می‌ماند.
+              </h2>
+            </div>
+            <p className="max-w-xs text-xs leading-7 text-charcoal/70 sm:text-sm">
+              بدون این سه، باشگاه فقط یک فهرست رویداد است.
             </p>
-            <ButtonLink href="/events" variant="navy" className="mt-6">
-              مشاهده رویدادها
+          </div>
+
+          <ul className="mt-10 grid gap-8 sm:grid-cols-3 sm:gap-0">
+            {principles.map((item) => (
+              <li
+                key={item.number}
+                className="border-t border-charcoal/20 pt-5 sm:border-t-0 sm:border-s sm:px-6 sm:pt-0 sm:first:border-s-0 sm:first:ps-0 sm:last:pe-0"
+              >
+                <span className="text-[11px] text-charcoal/65">{item.number}</span>
+                <h3 className="mt-2 font-display text-xl leading-snug sm:text-2xl">{item.title}</h3>
+                <p className="mt-2 text-sm leading-7 text-charcoal/70">{item.body}</p>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      {/* Categories ---------------------------------------------------------- */}
+      <section className="border-t border-rule">
+        <Container className="py-16 sm:py-20 lg:py-24">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <SectionLabel>۰۴ — حوزه‌ها</SectionLabel>
+              <h2 className="mt-5 font-display text-[clamp(1.8rem,4vw,3rem)] leading-[1.25] font-medium text-charcoal">
+                از کجا شروع کنید؟
+              </h2>
+            </div>
+            <Link
+              href="/events"
+              className="text-sm text-ink-muted underline decoration-charcoal/25 underline-offset-4 transition-colors hover:text-clay hover:decoration-clay"
+            >
+              دیدن همه رویدادها
+            </Link>
+          </div>
+
+          <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 lg:grid-cols-4">
+            {categories.map(({ name, slug, note, Art }) => (
+              <li key={slug}>
+                <Link href={`/events?category=${slug}`} className="group block">
+                  <Art className="aspect-[4/5] w-full" />
+                  <div className="mt-3 flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
+                    <span className="font-display text-lg leading-snug text-charcoal transition-colors group-hover:text-clay sm:text-xl">
+                      <span className="sr-only">دیدن رویدادهای </span>
+                      {name}
+                    </span>
+                    <span className="text-[11px] text-ink-muted">{note}</span>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      {/* Closing ------------------------------------------------------------- */}
+      <section className="border-t border-rule bg-cream-deep">
+        <Container className="py-16 text-center sm:py-20">
+          <p className="text-[11px] text-ink-muted">۰۵ — قدم بعدی</p>
+          <h2 className="mx-auto mt-4 max-w-2xl font-display text-[clamp(1.9rem,4.6vw,3.4rem)] leading-[1.25] font-medium text-charcoal">
+            اولین قدم، یک رویداد است.
+          </h2>
+          <p className="mx-auto mt-4 max-w-md text-sm leading-8 text-ink-muted">
+            رویدادهای پیشرو را ببینید؛ اگر هنوز چیزی ثبت نشده باشد، حساب بسازید تا خبر
+            اولین رویداد به شما برسد.
+          </p>
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+            <ButtonLink href="/events" size="lg">
+              دیدن رویدادها
+            </ButtonLink>
+            <ButtonLink href="/login" variant="outline" size="lg">
+              ساخت حساب
             </ButtonLink>
           </div>
         </Container>

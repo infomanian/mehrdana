@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/vazirmatn";
+import "@fontsource-variable/noto-naskh-arabic";
 
 import "./globals.css";
 
@@ -63,7 +64,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   colorScheme: "light",
-  themeColor: "#0F294A",
+  themeColor: "#F4EBDC",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

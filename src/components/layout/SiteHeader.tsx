@@ -11,26 +11,28 @@ import { UserMenu } from "./UserMenu";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line/80 bg-surface/90 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-rule/80 bg-cream/90 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between gap-4">
         <div className="flex min-w-0 items-center gap-6 lg:gap-10">
           <Link href="/" className="flex shrink-0 items-center gap-2.5">
-            <BrandMark className="size-9 shrink-0 text-navy-900" />
+            <BrandMark className="size-8 shrink-0 text-charcoal" />
             <span className="flex flex-col leading-tight">
-              <span className="text-base font-bold text-navy-900">{siteConfig.name}</span>
-              <span className="hidden text-[11px] font-normal text-ink-muted sm:inline">
+              <span className="font-display text-lg leading-none font-semibold text-charcoal">
+                {siteConfig.name}
+              </span>
+              <span className="mt-1 hidden text-[10px] font-normal text-ink-muted sm:inline">
                 {siteConfig.tagline}
               </span>
             </span>
           </Link>
 
-          <nav aria-label="ناوبری اصلی" className="hidden items-center gap-1 md:flex">
+          <nav aria-label="ناوبری اصلی" className="hidden items-center gap-6 md:flex">
             {headerNav.map((item) =>
               item.href ? (
                 <Link
                   key={item.id}
                   href={item.href}
-                  className="rounded-full px-3 py-2 text-sm font-medium text-ink transition-colors hover:bg-canvas hover:text-navy-900"
+                  className="text-sm text-ink transition-colors hover:text-clay"
                 >
                   {item.label}
                 </Link>
@@ -39,7 +41,7 @@ export function SiteHeader() {
                   key={item.id}
                   aria-disabled="true"
                   title="به‌زودی"
-                  className="cursor-default rounded-full px-3 py-2 text-sm font-medium text-ink-muted/60"
+                  className="cursor-default text-sm text-ink-muted/60"
                 >
                   {item.label}
                   <span className="sr-only"> (به‌زودی)</span>
@@ -77,5 +79,5 @@ async function HeaderAuth() {
 
 /** Same footprint as the final controls, so nothing jumps when auth resolves. */
 function HeaderAuthFallback() {
-  return <span aria-hidden="true" className="h-10 w-28 animate-pulse rounded-full bg-canvas" />;
+  return <span aria-hidden="true" className="h-10 w-28 animate-pulse rounded-sm bg-charcoal/10" />;
 }

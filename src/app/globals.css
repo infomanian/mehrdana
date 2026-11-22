@@ -2,30 +2,44 @@
 
 /*
  * Design tokens (single source of truth).
- * The coral accent is split in two tones on purpose: `accent` is dark enough
- * for white text on filled buttons (WCAG AA), while `accent-soft` keeps the
- * warmer brand hue for decorative details only.
+ *
+ * The palette follows the warm editorial direction of the homepage reference:
+ * cream paper, sand, deep charcoal and clay. Navy/teal tokens are kept for the
+ * event and dashboard surfaces built in later modules.
  */
 @theme {
   --font-sans: "Vazirmatn Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Noto Naskh Arabic Variable", "Vazirmatn Variable", serif;
 
+  --color-cream: #f4ebdc;
+  --color-cream-deep: #ece0cc;
+  --color-sand: #e4d5bb;
+  --color-sand-deep: #d6c3a3;
+  --color-sage: #dce3d2;
+  --color-charcoal: #1f1913;
+  --color-charcoal-soft: #33291f;
+
+  --color-clay: #b5452c;
+  --color-clay-strong: #93371f;
+  --color-clay-soft: #c9603f;
+
+  --color-canvas: #f4ebdc;
+  --color-surface: #fbf6ec;
+  --color-line: #ddd0ba;
+  --color-rule: #d9cbb4;
+  --color-ink: #1f1913;
+  --color-ink-muted: #6a5f51;
+
+  /* Kept for the event/chatholder surfaces of later modules. */
   --color-navy-950: #08182c;
   --color-navy-900: #0f294a;
   --color-navy-800: #1b365d;
   --color-navy-700: #274a78;
-
   --color-accent: #c8452f;
   --color-accent-strong: #a93522;
   --color-accent-soft: #e85d4a;
-
   --color-verified: #2a9d8f;
   --color-verified-strong: #1e7a6f;
-
-  --color-canvas: #f7f8fa;
-  --color-surface: #ffffff;
-  --color-line: #e5e7eb;
-  --color-ink: #111827;
-  --color-ink-muted: #4b5563;
 
   --radius-card: 1rem;
 }
@@ -37,7 +51,7 @@
   }
 
   body {
-    background-color: var(--color-canvas);
+    background-color: var(--color-cream);
     color: var(--color-ink);
     font-family: var(--font-sans);
     line-height: 1.75;
@@ -45,11 +59,11 @@
   }
 
   ::selection {
-    background-color: rgb(200 69 47 / 18%);
+    background-color: rgb(181 69 44 / 18%);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent-strong);
+    outline: 2px solid var(--color-clay);
     outline-offset: 2px;
   }
 

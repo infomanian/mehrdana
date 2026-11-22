@@ -58,7 +58,7 @@ export function MobileTabBar() {
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
                   "flex min-h-14 flex-col items-center justify-center gap-1 px-1 py-2 text-[11px] font-medium transition-colors",
-                  isActive ? "text-accent-strong" : "text-ink-muted hover:text-navy-900",
+                  isActive ? "text-clay" : "text-ink-muted hover:text-charcoal",
                 )}
               >
                 <Icon className="size-5" />

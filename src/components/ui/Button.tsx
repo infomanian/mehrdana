@@ -3,14 +3,16 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import { cn } from "@/lib/cn";
 
-export type ButtonVariant = "primary" | "navy" | "outline" | "ghost";
+export type ButtonVariant = "primary" | "ink" | "navy" | "outline" | "ghost";
 export type ButtonSize = "sm" | "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: "bg-accent text-white shadow-sm hover:bg-accent-strong",
-  navy: "bg-navy-800 text-white shadow-sm hover:bg-navy-900",
-  outline: "border border-line bg-surface text-ink hover:border-navy-800/25 hover:bg-canvas",
-  ghost: "text-navy-800 hover:bg-navy-800/5",
+  primary: "bg-clay text-cream hover:bg-clay-strong",
+  ink: "bg-charcoal text-cream hover:bg-charcoal-soft",
+  navy: "bg-navy-800 text-white hover:bg-navy-900",
+  outline:
+    "border border-charcoal/25 text-charcoal hover:border-charcoal hover:bg-charcoal/5",
+  ghost: "text-charcoal hover:bg-charcoal/5",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -29,7 +31,7 @@ export function buttonStyles({
   className?: string;
 } = {}) {
   return cn(
-    "inline-flex select-none items-center justify-center rounded-full font-medium transition-colors",
+    "inline-flex select-none items-center justify-center rounded-sm font-medium transition-colors",
     "disabled:pointer-events-none disabled:opacity-60",
     variantClasses[variant],
     sizeClasses[size],
