@@ -96,6 +96,39 @@ const principles = [
   },
 ];
 
+const faqs = [
+  {
+    question: "مهر دانا چه فرقی با یک سایت ثبت‌نام رویداد دارد؟",
+    answer:
+      "اینجا فقط فهرست رویداد نیست: هر رویداد یک اتاق گفتگوی مخصوص شرکت‌کنندگان دارد، لینک پخش و ضبط فقط برای بلیت تأییدشده باز می‌شود و می‌توانید با آدم‌های هم‌مسیر آشنا شوید.",
+  },
+  {
+    question: "چطور حساب بسازم؟",
+    answer:
+      "روی «ورود / ثبت‌نام» بزنید، ایمیلتان را وارد کنید و کد ۶ رقمی‌ای که می‌فرستیم را وارد کنید. رمز عبوری لازم نیست و کد فقط چند دقیقه معتبر است.",
+  },
+  {
+    question: "بلیت را چطور بخرم؟",
+    answer:
+      "برای پرداخت ریالی، لینک خرید فیدیبو در صفحه‌ی هر رویداد قرار دارد. بعد از خرید، کد بلیت فیدیبو را در همان صفحه ثبت می‌کنید تا بلیتتان بررسی و تأیید شود. برای پرداخت دلاری هم استرایپ و پی‌پال در دسترس است.",
+  },
+  {
+    question: "تفاوت بلیت حضوری، آنلاین و ضبط چیست؟",
+    answer:
+      "«حضوری» یعنی شرکت در محل رویداد، «آنلاین» یعنی تماشای زنده‌ی همان رویداد از خانه. برای رویدادهای برگزارشده هم می‌توانید فقط فایل ضبط را تهیه کنید.",
+  },
+  {
+    question: "چه کسی به اتاق گفتگو و لینک پخش دسترسی دارد؟",
+    answer:
+      "فقط کسانی که بلیتشان تأیید شده است. لینک پخش زنده، فایل ضبط و اتاق گفتگو در صفحه‌ی رویداد و تنها برای همین افراد نمایش داده می‌شود.",
+  },
+  {
+    question: "آیا پروفایلم برای همه دیده می‌شود؟",
+    answer:
+      "فقط اگر خودتان اجازه بدهید. در تنظیمات پروفایل می‌توانید آن را خصوصی کنید؛ پیام‌های خصوصی هم فقط بین دو طرف باقی می‌ماند.",
+  },
+];
+
 export default function HomePage() {
   return (
     <>
@@ -300,10 +333,65 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* FAQ ----------------------------------------------------------------- */}
+      <section id="faq" className="scroll-mt-20 border-t border-rule">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: faqs.map((faq) => ({
+                "@type": "Question",
+                name: faq.question,
+                acceptedAnswer: { "@type": "Answer", text: faq.answer },
+              })),
+            }).replace(/</g, "\\u003c"),
+          }}
+        />
+        <Container className="py-16 sm:py-20 lg:py-24">
+          <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-5">
+              <SectionLabel>۰۵ — پرسش‌های پرتکرار</SectionLabel>
+              <h2 className="mt-5 font-display text-[clamp(1.8rem,4vw,3rem)] leading-[1.25] font-medium text-charcoal">
+                سؤال‌هایی که پیش از شروع پرسیده می‌شود.
+              </h2>
+              <p className="mt-4 max-w-sm text-sm leading-8 text-ink-muted">
+                پاسخ کوتاه به شش پرسش رایج درباره‌ی حساب، بلیت و دسترسی به رویدادها.
+              </p>
+            </div>
+
+            <div className="lg:col-span-7">
+              <div className="border-t border-rule">
+                {faqs.map((faq) => (
+                  <details key={faq.question} className="group border-b border-rule">
+                    <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 transition-colors hover:text-clay [&::-webkit-details-marker]:hidden">
+                      <span className="font-display text-lg leading-snug font-medium text-charcoal transition-colors group-hover:text-clay sm:text-xl">
+                        {faq.question}
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="relative mt-2 block size-4 shrink-0 text-charcoal/70 transition-transform duration-300 group-open:rotate-45"
+                      >
+                        <span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-current" />
+                        <span className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-current" />
+                      </span>
+                    </summary>
+                    <p className="max-w-2xl pb-6 text-sm leading-8 text-ink-muted sm:text-[15px] sm:leading-9">
+                      {faq.answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* Closing ------------------------------------------------------------- */}
       <section className="border-t border-rule bg-cream-deep">
         <Container className="py-16 text-center sm:py-20">
-          <p className="text-[11px] text-ink-muted">۰۵ — قدم بعدی</p>
+          <p className="text-[11px] text-ink-muted">۰۶ — قدم بعدی</p>
           <h2 className="mx-auto mt-4 max-w-2xl font-display text-[clamp(1.9rem,4.6vw,3.4rem)] leading-[1.25] font-medium text-charcoal">
             اولین قدم، یک رویداد است.
           </h2>

@@ -22,6 +22,7 @@ export type NavItem = {
 export const headerNav: NavItem[] = [
   { id: "events", label: "رویدادها", href: "/events" },
   { id: "about", label: "درباره مهر دانا", href: "/#about" },
+  { id: "faq", label: "پرسش‌های پرتکرار", href: "/#faq" },
 ];
 
 export const mobileTabNav: NavItem[] = [
