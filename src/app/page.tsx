@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
 
-import { ArchArt, DiscArt, RuleArt, SpineArt } from "@/components/home/art";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/lib/site";
@@ -25,10 +25,34 @@ function SectionLabel({ children, tone = "dark" }: { children: React.ReactNode; 
 }
 
 const categories = [
-  { name: "روان‌شناسی", slug: "psychology", note: "ذهن، رابطه، رفتار", Art: SpineArt },
-  { name: "فلسفه", slug: "philosophy", note: "پرسش‌های بی‌پایان", Art: ArchArt },
-  { name: "بیزنس", slug: "business", note: "ساختن و رشد کردن", Art: DiscArt },
-  { name: "نوروساینس", slug: "neuroscience", note: "مغز و تجربه", Art: RuleArt },
+  {
+    name: "روان‌شناسی",
+    slug: "psychology",
+    note: "ذهن، رابطه، رفتار",
+    src: "/images/home/category-psychology.jpg",
+    alt: "دو نفر در حال گفتگو روی صندلی، با لیوان‌های چای و دفترچه یادداشت روی میز",
+  },
+  {
+    name: "فلسفه",
+    slug: "philosophy",
+    note: "پرسش‌های بی‌پایان",
+    src: "/images/home/category-philosophy.jpg",
+    alt: "مردی در کتابخانه‌ای قدیمی کنار پنجره مشغول خواندن کتاب است",
+  },
+  {
+    name: "بیزنس",
+    slug: "business",
+    note: "ساختن و رشد کردن",
+    src: "/images/home/category-business.jpg",
+    alt: "چند نفر دور میز جلسه در حال کار با لپ‌تاپ و یادداشت‌برداری هستند",
+  },
+  {
+    name: "نوروساینس",
+    slug: "neuroscience",
+    note: "مغز و تجربه",
+    src: "/images/home/category-neuroscience.jpg",
+    alt: "تصویر هنری از سلول‌های عصبی با نور کهربایی",
+  },
 ];
 
 const offerings = [
@@ -78,11 +102,11 @@ export default function HomePage() {
       {/* Hero ---------------------------------------------------------------- */}
       <section className="relative">
         <Container className="pt-10 pb-12 sm:pt-14 lg:pt-16">
-          <div className="grid items-end gap-10 lg:grid-cols-[1.3fr_0.7fr] lg:gap-12">
+          <div className="grid items-end gap-10 md:grid-cols-[1.05fr_0.95fr] md:gap-8 lg:gap-12">
             <div>
               <SectionLabel>باشگاه رویدادهای مهر دانا</SectionLabel>
 
-              <h1 className="mt-7 font-display text-[clamp(2.9rem,7.4vw,5.6rem)] leading-[1.1] font-medium text-charcoal">
+              <h1 className="mt-7 font-display text-[clamp(2.7rem,6.6vw,5rem)] leading-[1.1] font-medium text-charcoal">
                 دانش. گفت‌وگو.
                 <br />
                 پیوند.
@@ -106,13 +130,24 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="relative">
-              <SpineArt className="aspect-[4/3] w-full sm:aspect-[16/9] lg:aspect-[5/6]" />
+            <div className="relative aspect-[4/5] w-full overflow-hidden bg-charcoal">
+              <Image
+                src="/images/home/hero.jpg"
+                alt="چند نفر در کتابخانه‌ای با نور گرم، دور میزی چوبی و لیوان‌های چای در حال گفتگو هستند"
+                fill
+                priority
+                sizes="(min-width: 768px) 45vw, 100vw"
+                className="object-cover"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-charcoal/85 via-charcoal/35 to-transparent"
+              />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 sm:p-6">
                 <span className="font-display text-lg leading-tight text-cream sm:text-xl">
                   {siteConfig.name}
                 </span>
-                <span className="text-[11px] text-cream/60">تهران و آنلاین</span>
+                <span className="text-[11px] text-cream/70">تهران و آنلاین</span>
               </div>
             </div>
           </div>
@@ -239,10 +274,18 @@ export default function HomePage() {
           </div>
 
           <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 lg:grid-cols-4">
-            {categories.map(({ name, slug, note, Art }) => (
+            {categories.map(({ name, slug, note, src, alt }) => (
               <li key={slug}>
                 <Link href={`/events?category=${slug}`} className="group block">
-                  <Art className="aspect-[4/5] w-full" />
+                  <div className="relative aspect-[4/5] w-full overflow-hidden bg-sand">
+                    <Image
+                      src={src}
+                      alt={alt}
+                      fill
+                      sizes="(min-width: 1024px) 22vw, 45vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    />
+                  </div>
                   <div className="mt-3 flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
                     <span className="font-display text-lg leading-snug text-charcoal transition-colors group-hover:text-clay sm:text-xl">
                       <span className="sr-only">دیدن رویدادهای </span>
