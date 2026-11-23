@@ -67,10 +67,40 @@ export const viewport: Viewport = {
   themeColor: "#F4EBDC",
 };
 
+/**
+ * Development only. A worker registered earlier by a production preview
+ * (`next start`) keeps serving the chunk files of the old build while
+ * `next dev` rebuilds them, which shows up as hydration mismatches. This runs
+ * from the fresh HTML before any cached chunk can load, so it always wins.
+ */
+const devServiceWorkerCleanup =
+  process.env.NODE_ENV === "production"
+    ? null
+    : `if ("serviceWorker" in navigator) {
+  var clearDevCaches = function () {
+    if (!window.caches) return Promise.resolve();
+    return caches.keys().then(function (keys) {
+      return Promise.all(keys.map(function (key) { return caches.delete(key); }));
+    });
+  };
+  navigator.serviceWorker
+    .getRegistrations()
+    .then(function (registrations) {
+      return Promise.all(registrations.map(function (registration) {
+        return registration.unregister();
+      }));
+    })
+    .then(clearDevCaches);
+  window.addEventListener("load", clearDevCaches);
+}`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fa" dir="rtl" data-scroll-behavior="smooth">
       <body className="flex min-h-dvh flex-col pb-[calc(3.5rem+env(safe-area-inset-bottom))] md:pb-0">
+        {devServiceWorkerCleanup ? (
+          <script dangerouslySetInnerHTML={{ __html: devServiceWorkerCleanup }} />
+        ) : null}
         <SkipLink />
         <SiteHeader />
         <main id="main" className="flex-1">
