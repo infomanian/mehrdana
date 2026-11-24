@@ -22,11 +22,17 @@ and a covering index for the showcase filters; see `migrations/0010_event_covers
 ## How to apply
 
 1. Open your Supabase project → **SQL Editor**.
-2. Run the files in `migrations/` **in numeric order** (0001 → 0010). Each file
-   is safe to re-run.
+2. Run the files in `migrations/` **in numeric order** (0001 → 0016). Each file
+   is safe to re-run, except `0001`, `0012` and `0013` which create enum types
+   and therefore fail if run twice.
 3. Run `verify/verify_rls.sql` and confirm every check matches the expected
    result written above the query.
-4. Copy the project URL and the **anon** key into `.env` (see `.env.example`).
+4. Copy the project URL (base only, without `/rest/v1/`), the **publishable/anon**
+   key and the **secret/service_role** key into `.env` (see `.env.example`).
+
+`0015_grants.sql` exists because recent Supabase projects no longer grant the
+`public` schema to the API roles by default. Without it every request fails with
+`permission denied for table ...` even though the RLS policies are correct.
 
 With the Supabase CLI you can also run `supabase db push` once the project is
 linked.
