@@ -22,6 +22,41 @@ Beyond event discovery and ticketing, the core value is social networking: ticke
   2. `speaker` (Instructor/Speaker - highlighted badge, linked to events)
   3. `admin` (Event Manager - full CRUD on events, categories, ticket code imports, user moderation/reports)
 
+### Email OTP setup (Supabase Dashboard)
+The login form sends and verifies a **6-digit code** (`signInWithOtp` +
+`verifyOtp({ type: "email" })`). Two dashboard settings must agree with that flow; neither
+lives in the repository, so a fresh project has to be configured once.
+
+1. **Authentication → URL Configuration**
+   - `Site URL`: `http://localhost:3000` during development, the public domain after deploy.
+   - `Redirect URLs`: add `http://localhost:3000/**` (and the production equivalent).
+   - A stale Site URL (for example an old LAN address such as `http://10.7.146.182:3000`)
+     makes every link in the email unreachable.
+2. **Authentication → Emails → Magic Link and Confirm signup**
+   - Both templates ship with `{{ .ConfirmationURL }}` only, which is a link, not a code.
+   - Add `{{ .Token }}` so the email carries the 6-digit code the form asks for. New
+     addresses receive the "Confirm signup" template, existing ones the "Magic Link"
+     template, so both need the change.
+3. **Authentication → Providers → Email**
+   - "Email OTP Expiration" defaults to 3600 seconds; keep it between 5 and 60 minutes.
+   - The built-in mailer is rate limited to a few messages per hour and often lands in
+     spam. Configure custom SMTP (with SPF/DKIM) before launch.
+
+Suggested "Magic Link" / "Confirm signup" body (user-facing copy, Persian):
+
+```text
+سلام،
+
+کد ورود شما به مهر دانا:
+
+{{ .Token }}
+
+این کد چند دقیقه معتبر است. اگر شما درخواست ورود نداده‌اید، این ایمیل را نادیده بگیرید.
+
+{{ .SiteURL }}/login
+```
+
+
 ## 4. Database Schema (Supabase PostgreSQL)
 
 ### `profiles`
