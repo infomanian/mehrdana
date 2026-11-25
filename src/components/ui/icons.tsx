@@ -172,7 +172,7 @@ export function BrandMark({ className }: { className?: string }) {
     >
       <rect width="40" height="40" rx="11" fill="currentColor" />
       <circle cx="20" cy="20" r="9.5" stroke="white" strokeOpacity="0.35" strokeWidth="2" fill="none" />
-      <circle cx="20" cy="20" r="4.4" fill="#E85D4A" />
+      <circle cx="20" cy="20" r="4.4" fill="#C29B58" />
       <circle cx="20" cy="10.5" r="2.1" fill="white" fillOpacity="0.9" />
       <circle cx="29.5" cy="20" r="2.1" fill="white" fillOpacity="0.55" />
       <circle cx="20" cy="29.5" r="2.1" fill="white" fillOpacity="0.55" />

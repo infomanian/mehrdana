@@ -32,7 +32,7 @@ export default async function LoginPage({
       <div className="mx-auto w-full max-w-md px-4 sm:px-6">
         <div className="text-center">
           <Badge tone="verified">ورود امن بدون رمز عبور</Badge>
-          <h1 className="mt-4 text-2xl font-bold text-charcoal sm:text-3xl">
+          <h1 className="mt-4 text-2xl font-bold text-navy sm:text-3xl">
             ورود یا ثبت‌نام
           </h1>
           <p className="mx-auto mt-3 max-w-sm text-sm leading-7 text-ink-muted">

@@ -23,7 +23,7 @@ export default async function AdminCategoriesPage() {
 
   return (
     <div className="mx-auto max-w-2xl">
-      <h1 className="text-2xl font-bold text-charcoal">دسته‌بندی‌ها</h1>
+      <h1 className="text-2xl font-bold text-navy">دسته‌بندی‌ها</h1>
       <p className="mt-1 text-sm leading-7 text-ink-muted">
         دسته‌بندی‌های رویدادها را اضافه یا ویرایش کنید؛ در فیلترهای سایت و فرم رویداد
         نمایش داده می‌شوند.

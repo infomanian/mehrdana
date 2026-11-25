@@ -75,7 +75,7 @@ export function ProfileForm({
 
   return (
     <Card className="p-5 sm:p-6" id="profile-form">
-      <h2 className="text-base font-bold text-charcoal">اطلاعات پروفایل</h2>
+      <h2 className="text-base font-bold text-navy">اطلاعات پروفایل</h2>
       <p className="mt-1 text-xs leading-6 text-ink-muted">
         این اطلاعات در فهرست شرکت‌کنندگان رویدادها به دیگران نشان داده می‌شود؛ هر بخش را
         می‌توانید خالی بگذارید.
@@ -134,7 +134,7 @@ export function ProfileForm({
         </Field>
 
         <fieldset>
-          <legend className="text-sm font-medium text-charcoal">علاقه‌مندی‌ها</legend>
+          <legend className="text-sm font-medium text-navy">علاقه‌مندی‌ها</legend>
           <p className="mt-1 text-xs leading-6 text-ink-muted">
             حداکثر {formatNumber(MAX_INTERESTS)} مورد؛ {formatNumber(selected.length)} مورد
             انتخاب شده است.
@@ -172,7 +172,7 @@ export function ProfileForm({
         </fieldset>
 
         <fieldset>
-          <legend className="text-sm font-medium text-charcoal">شبکه‌های اجتماعی</legend>
+          <legend className="text-sm font-medium text-navy">شبکه‌های اجتماعی</legend>
           <p className="mt-1 text-xs leading-6 text-ink-muted">
             وارد کردن همه اختیاری است. فقط نام کاربری یا آدرس کامل را بنویسید.
           </p>

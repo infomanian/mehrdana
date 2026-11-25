@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn";
  * without fighting two competing Tailwind classes.
  */
 export const fieldBase =
-  "w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-ink placeholder:text-ink-muted/60 outline-none transition-colors focus:border-charcoal/40 focus:ring-2 focus:ring-charcoal/10 disabled:cursor-not-allowed disabled:bg-canvas";
+  "w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-ink placeholder:text-ink-muted/60 outline-none transition-colors focus:border-navy/40 focus:ring-2 focus:ring-navy/10 disabled:cursor-not-allowed disabled:bg-canvas";
 
 export const inputStyles = cn(fieldBase, "text-sm");
 
@@ -28,7 +28,7 @@ export function Field({
 }) {
   return (
     <div className={cn("space-y-1.5", className)}>
-      <label htmlFor={id} className="block text-sm font-medium text-charcoal">
+      <label htmlFor={id} className="block text-sm font-medium text-navy">
         {label}
       </label>
       {children}

@@ -12,7 +12,7 @@ const footerLinks = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-charcoal text-cream">
+    <footer className="bg-navy text-cream">
       <Container className="py-14">
         <div className="grid gap-10 sm:grid-cols-[1.4fr_1fr] sm:gap-12">
           <div>

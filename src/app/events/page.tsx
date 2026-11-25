@@ -81,10 +81,10 @@ export default async function EventsPage({
         <Container>
           {!configured || loadError ? (
             <Card className="mx-auto max-w-lg p-8 text-center">
-              <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-sand/70 text-charcoal">
+              <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-sand/70 text-navy">
                 <OfflineIcon className="size-6" />
               </span>
-              <h2 className="mt-4 font-display text-lg font-medium text-charcoal">
+              <h2 className="mt-4 font-display text-lg font-medium text-navy">
                 فهرست رویدادها در دسترس نیست
               </h2>
               <p className="mt-2 text-sm leading-7 text-ink-muted">
@@ -101,7 +101,7 @@ export default async function EventsPage({
 
               {items.length === 0 ? (
                 <Card className="mt-6 p-10 text-center">
-                  <h2 className="font-display text-lg font-medium text-charcoal">
+                  <h2 className="font-display text-lg font-medium text-navy">
                     {category && !categoryKnown
                       ? "این دسته‌بندی وجود ندارد."
                       : status === "past"

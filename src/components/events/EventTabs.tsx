@@ -38,8 +38,8 @@ export function EventTabs({ eventId }: { eventId: string }) {
                   className={cn(
                     "inline-flex min-h-10 items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors",
                     isActive
-                      ? "bg-charcoal text-cream"
-                      : "text-ink-muted hover:bg-canvas hover:text-charcoal",
+                      ? "bg-navy text-cream"
+                      : "text-ink-muted hover:bg-canvas hover:text-navy",
                   )}
                 >
                   <Icon className="size-4" />

@@ -11,7 +11,7 @@ export default function EventDetailError({ reset }: { error: Error; reset: () =>
     <section className="py-16">
       <Container>
         <Card className="mx-auto max-w-md p-8 text-center">
-          <h1 className="text-lg font-bold text-charcoal">بارگذاری رویداد انجام نشد</h1>
+          <h1 className="text-lg font-bold text-navy">بارگذاری رویداد انجام نشد</h1>
           <p className="mt-2 text-sm leading-7 text-ink-muted">
             ارتباط با سرور برقرار نشد یا اطلاعات در دسترس نبود. یک‌بار دیگر تلاش کنید.
           </p>
@@ -20,7 +20,7 @@ export default function EventDetailError({ reset }: { error: Error; reset: () =>
             <Button type="button" onClick={reset}>
               تلاش دوباره
             </Button>
-            <Link href="/events" className="text-sm font-medium text-charcoal hover:underline">
+            <Link href="/events" className="text-sm font-medium text-navy hover:underline">
               بازگشت به رویدادها
             </Link>
           </div>

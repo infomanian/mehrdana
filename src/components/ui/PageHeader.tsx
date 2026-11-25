@@ -27,7 +27,7 @@ export function PageHeader({
       <Container className="py-12 sm:py-16">
         <SectionLabel>{eyebrow}</SectionLabel>
 
-        <h1 className="mt-5 max-w-3xl font-display text-[clamp(1.9rem,4.4vw,3.2rem)] leading-[1.25] font-medium text-charcoal">
+        <h1 className="mt-5 max-w-3xl font-display text-[clamp(1.9rem,4.4vw,3.2rem)] leading-[1.25] font-medium text-navy">
           {title}
         </h1>
 

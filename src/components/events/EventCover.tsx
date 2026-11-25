@@ -39,9 +39,9 @@ export function EventCover({
           />
           <div
             aria-hidden="true"
-            className="absolute -bottom-12 end-4 size-44 rounded-full bg-clay/25 blur-3xl"
+            className="absolute -bottom-12 end-4 size-44 rounded-full bg-teal/25 blur-3xl"
           />
-          <span className="absolute inset-0 flex items-center justify-center text-charcoal/40">
+          <span className="absolute inset-0 flex items-center justify-center text-navy/40">
             <CalendarIcon className="size-9" />
           </span>
         </>

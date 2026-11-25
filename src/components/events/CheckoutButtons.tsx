@@ -69,7 +69,7 @@ export function CheckoutButtons({
           className="flex items-center justify-between gap-3 border-t border-line py-2.5 first:border-t-0 first:pt-0"
         >
           <div>
-            <p className="text-sm font-medium text-charcoal">{option.label}</p>
+            <p className="text-sm font-medium text-navy">{option.label}</p>
             <p className="text-xs text-ink-muted">{formatPrice(option.usd, "USD")}</p>
           </div>
 

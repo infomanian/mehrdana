@@ -25,7 +25,7 @@ export function SectionLabel({
     >
       <span
         aria-hidden="true"
-        className={cn("h-px w-8", tone === "light" ? "bg-cream/35" : "bg-charcoal/35")}
+        className={cn("h-px w-8", tone === "light" ? "bg-cream/35" : "bg-navy/35")}
       />
       {children}
     </p>

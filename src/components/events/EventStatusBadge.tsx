@@ -3,7 +3,7 @@ import { eventStatusLabels } from "@/lib/labels";
 import type { EventStatus } from "@/types/database";
 
 const tones: Record<EventStatus, BadgeTone> = {
-  upcoming: "sand",
+  upcoming: "gold",
   live: "verified",
   past: "neutral",
 };

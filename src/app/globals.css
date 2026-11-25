@@ -3,9 +3,10 @@
 /*
  * Design tokens (single source of truth).
  *
- * The palette follows the warm editorial direction of the homepage reference:
- * cream paper, sand, deep charcoal and clay. Navy/teal tokens are kept for the
- * event and dashboard surfaces built in later modules.
+ * Paper stays warm and editorial; the brand palette from `docs/palette` supplies
+ * the ink and action colours: deep navy `#06253e`, teal `#00a69c` and gold
+ * `#c29b58`, exactly as used in `logo-06.svg`. Teal is darkened for text and
+ * buttons so small copy keeps a readable contrast on cream.
  */
 @theme {
   --font-sans: "Vazirmatn Variable", ui-sans-serif, system-ui, sans-serif;
@@ -16,26 +17,34 @@
   --color-sand: #e4d5bb;
   --color-sand-deep: #d6c3a3;
   --color-sage: #dce3d2;
-  --color-charcoal: #1f1913;
-  --color-charcoal-soft: #33291f;
 
-  --color-clay: #b5452c;
-  --color-clay-strong: #93371f;
-  --color-clay-soft: #c9603f;
+  /* Brand navy, from the logo. */
+  --color-navy: #06253e;
+  --color-navy-soft: #0b3352;
+
+  /* Brand teal. `teal-strong` is the readable version for text and buttons. */
+  --color-teal: #00a69c;
+  --color-teal-strong: #007b73;
+  --color-teal-deep: #00605a;
+  --color-teal-soft: #34bdb4;
+
+  /* Brand gold. `gold-strong` is the readable version on cream. */
+  --color-gold: #c29b58;
+  --color-gold-strong: #8a6a32;
 
   --color-canvas: #f4ebdc;
   --color-surface: #fbf6ec;
   --color-line: #ddd0ba;
   --color-rule: #d9cbb4;
-  --color-ink: #1f1913;
-  --color-ink-muted: #6a5f51;
+  --color-ink: #06253e;
+  --color-ink-muted: #55616e;
 
-  /* Semantic accents that survive the warm palette. */
+  /* Status colours stay separate from the brand accents. */
   --color-accent: #c8452f;
   --color-accent-strong: #a93522;
   --color-accent-soft: #e85d4a;
-  --color-verified: #2a9d8f;
-  --color-verified-strong: #1e7a6f;
+  --color-verified: #007b73;
+  --color-verified-strong: #00605a;
 
   --radius-card: 1rem;
 }
@@ -55,11 +64,11 @@
   }
 
   ::selection {
-    background-color: rgb(181 69 44 / 18%);
+    background-color: rgb(0 166 156 / 20%);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-clay);
+    outline: 2px solid var(--color-teal-strong);
     outline-offset: 2px;
   }
 

@@ -42,8 +42,8 @@ export function EventFilters({
                   className={cn(
                     "flex min-h-10 items-center justify-center whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors",
                     isActive
-                      ? "bg-charcoal text-cream"
-                      : "text-ink-muted hover:bg-canvas hover:text-charcoal",
+                      ? "bg-navy text-cream"
+                      : "text-ink-muted hover:bg-canvas hover:text-navy",
                   )}
                 >
                   {tab.label}
@@ -63,8 +63,8 @@ export function EventFilters({
               className={cn(
                 "inline-flex rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
                 !activeCategory
-                  ? "border-charcoal bg-charcoal text-cream"
-                  : "border-line bg-surface text-ink-muted hover:border-charcoal/30 hover:text-charcoal",
+                  ? "border-navy bg-navy text-cream"
+                  : "border-line bg-surface text-ink-muted hover:border-navy/30 hover:text-navy",
               )}
             >
               همه دسته‌ها
@@ -81,8 +81,8 @@ export function EventFilters({
                   className={cn(
                     "inline-flex rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
                     isActive
-                      ? "border-clay bg-clay/10 text-clay-strong"
-                      : "border-line bg-surface text-ink-muted hover:border-charcoal/30 hover:text-charcoal",
+                      ? "border-teal bg-teal/10 text-teal-strong"
+                      : "border-line bg-surface text-ink-muted hover:border-navy/30 hover:text-navy",
                   )}
                 >
                   {category.name}

@@ -33,17 +33,17 @@ export function TicketsTable({ tickets }: { tickets: TicketHistoryRow[] }) {
   if (tickets.length === 0) {
     return (
       <Card className="p-8 text-center">
-        <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-charcoal/8 text-charcoal">
+        <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-navy/8 text-navy">
           <TicketIcon className="size-6" />
         </span>
-        <h2 className="mt-4 text-base font-bold text-charcoal">هنوز بلیتی ثبت نشده است</h2>
+        <h2 className="mt-4 text-base font-bold text-navy">هنوز بلیتی ثبت نشده است</h2>
         <p className="mx-auto mt-2 max-w-sm text-xs leading-7 text-ink-muted">
           پس از خرید یا ثبت کد بلیت فیدیبو، بلیت‌ها و پرداخت‌های شما در همین صفحه نمایش
           داده می‌شود.
         </p>
         <Link
           href="/"
-          className="mt-4 inline-flex text-sm font-medium text-charcoal hover:underline"
+          className="mt-4 inline-flex text-sm font-medium text-navy hover:underline"
         >
           بازگشت به صفحه اصلی
         </Link>
@@ -54,7 +54,7 @@ export function TicketsTable({ tickets }: { tickets: TicketHistoryRow[] }) {
   return (
     <Card className="overflow-hidden">
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line px-5 py-4">
-        <h2 className="text-sm font-bold text-charcoal">بلیت‌ها و پرداخت‌ها</h2>
+        <h2 className="text-sm font-bold text-navy">بلیت‌ها و پرداخت‌ها</h2>
         <span className="text-xs text-ink-muted">{tickets.length} مورد</span>
       </div>
 
@@ -87,7 +87,7 @@ export function TicketsTable({ tickets }: { tickets: TicketHistoryRow[] }) {
             {tickets.map((ticket) => (
               <tr key={ticket.ticket_id} className="border-t border-line align-top">
                 <td className="px-5 py-4">
-                  <p className="font-medium text-charcoal">{ticket.event_title}</p>
+                  <p className="font-medium text-navy">{ticket.event_title}</p>
                   <p className="mt-0.5 text-xs text-ink-muted">
                     {formatDate(ticket.event_date)}
                   </p>
@@ -117,7 +117,7 @@ export function TicketsTable({ tickets }: { tickets: TicketHistoryRow[] }) {
           <li key={ticket.ticket_id} className="p-4">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
-                <p className="font-medium text-charcoal">{ticket.event_title}</p>
+                <p className="font-medium text-navy">{ticket.event_title}</p>
                 <p className="mt-0.5 text-xs text-ink-muted">
                   {formatDate(ticket.event_date)}
                 </p>

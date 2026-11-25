@@ -15,9 +15,9 @@ export function SiteHeader() {
       <Container className="flex h-16 items-center justify-between gap-4">
         <div className="flex min-w-0 items-center gap-6 lg:gap-10">
           <Link href="/" className="flex shrink-0 items-center gap-2.5">
-            <BrandMark className="size-8 shrink-0 text-charcoal" />
+            <BrandMark className="size-8 shrink-0 text-navy" />
             <span className="flex flex-col leading-tight">
-              <span className="font-display text-lg leading-none font-semibold text-charcoal">
+              <span className="font-display text-lg leading-none font-semibold text-navy">
                 {siteConfig.name}
               </span>
               <span className="mt-1 hidden text-[10px] font-normal text-ink-muted sm:inline">
@@ -32,7 +32,7 @@ export function SiteHeader() {
                 <Link
                   key={item.id}
                   href={item.href}
-                  className="text-sm text-ink transition-colors hover:text-clay"
+                  className="text-sm text-ink transition-colors hover:text-teal-strong"
                 >
                   {item.label}
                 </Link>
@@ -79,5 +79,5 @@ async function HeaderAuth() {
 
 /** Same footprint as the final controls, so nothing jumps when auth resolves. */
 function HeaderAuthFallback() {
-  return <span aria-hidden="true" className="h-10 w-28 animate-pulse rounded-sm bg-charcoal/10" />;
+  return <span aria-hidden="true" className="h-10 w-28 animate-pulse rounded-sm bg-navy/10" />;
 }

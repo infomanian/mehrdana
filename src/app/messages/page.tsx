@@ -31,7 +31,7 @@ export default async function MessagesPage() {
     <section className="py-8 sm:py-10">
       <Container>
         <div className="mx-auto max-w-3xl">
-          <h1 className="text-2xl font-bold text-charcoal">پیام‌ها و ارتباطات</h1>
+          <h1 className="text-2xl font-bold text-navy">پیام‌ها و ارتباطات</h1>
           <p className="mt-1 text-sm leading-7 text-ink-muted">
             درخواست‌های دوستی و گفتگوهای خصوصی شما.
           </p>
@@ -39,8 +39,8 @@ export default async function MessagesPage() {
           {requests.length > 0 ? (
             <Card className="mt-6 overflow-hidden">
               <div className="flex items-center justify-between gap-2 border-b border-line px-5 py-3">
-                <h2 className="text-sm font-bold text-charcoal">درخواست‌های دوستی</h2>
-                <Badge tone="accent">{requests.length}</Badge>
+                <h2 className="text-sm font-bold text-navy">درخواست‌های دوستی</h2>
+                <Badge tone="gold">{requests.length}</Badge>
               </div>
 
               <ul className="divide-y divide-line">
@@ -53,7 +53,7 @@ export default async function MessagesPage() {
                       className="size-11 shrink-0 text-sm"
                     />
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-bold text-charcoal">
+                      <p className="truncate text-sm font-bold text-navy">
                         {request.full_name ?? "عضو مهر دانا"}
                       </p>
                       {request.profession ? (
@@ -67,14 +67,14 @@ export default async function MessagesPage() {
             </Card>
           ) : null}
 
-          <h2 className="mt-8 text-sm font-bold text-charcoal">گفتگوها</h2>
+          <h2 className="mt-8 text-sm font-bold text-navy">گفتگوها</h2>
 
           {conversations.length === 0 ? (
             <Card className="mt-3 p-8 text-center">
-              <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-charcoal/8 text-charcoal">
+              <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-navy/8 text-navy">
                 <ChatIcon className="size-6" />
               </span>
-              <h3 className="mt-4 text-base font-bold text-charcoal">گفتگویی ندارید</h3>
+              <h3 className="mt-4 text-base font-bold text-navy">گفتگویی ندارید</h3>
               <p className="mx-auto mt-2 max-w-sm text-sm leading-7 text-ink-muted">
                 پس از پذیرش درخواست دوستی یا ارتباط با شرکت‌کنندگان، گفتگوهای شما در همین
                 صفحه نمایش داده می‌شود.
@@ -93,7 +93,7 @@ export default async function MessagesPage() {
                         className="size-12 shrink-0 text-sm"
                       />
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-bold text-charcoal">
+                        <p className="truncate text-sm font-bold text-navy">
                           {conversation.other_name ?? "عضو مهر دانا"}
                         </p>
                         <p className="truncate text-xs text-ink-muted">

@@ -121,13 +121,13 @@ export default function HomePage() {
             <div>
               <SectionLabel>باشگاه رویدادهای مهر دانا</SectionLabel>
 
-              <h1 className="mt-7 font-display text-[clamp(2.7rem,6.6vw,5rem)] leading-[1.1] font-medium text-charcoal">
+              <h1 className="mt-7 font-display text-[clamp(2.7rem,6.6vw,5rem)] leading-[1.1] font-medium text-navy">
                 دانش. گفت‌وگو.
                 <br />
                 پیوند.
               </h1>
 
-              <div aria-hidden="true" className="mt-9 h-px w-full bg-charcoal/25" />
+              <div aria-hidden="true" className="mt-9 h-px w-full bg-navy/25" />
 
               <p className="mt-6 max-w-xl text-sm leading-8 text-ink-muted sm:text-base sm:leading-9">
                 مهر دانا باشگاهی برای رویدادهای حضوری و آنلاین روان‌شناسی، فلسفه، بیزنس و
@@ -145,7 +145,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="relative aspect-[4/5] w-full overflow-hidden bg-charcoal">
+            <div className="relative aspect-[4/5] w-full overflow-hidden bg-navy">
               <Image
                 src="/images/home/hero.jpg"
                 alt="چند نفر در کتابخانه‌ای با نور گرم، دور میزی چوبی و لیوان‌های چای در حال گفتگو هستند"
@@ -156,7 +156,7 @@ export default function HomePage() {
               />
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-charcoal/85 via-charcoal/35 to-transparent"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-navy/85 via-navy/35 to-transparent"
               />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 sm:p-6">
                 <span className="font-display text-lg leading-tight text-cream sm:text-xl">
@@ -173,7 +173,7 @@ export default function HomePage() {
               <li key={category.slug}>
                 <Link
                   href={`/events?category=${category.slug}`}
-                  className="transition-colors hover:text-clay"
+                  className="transition-colors hover:text-teal-strong"
                 >
                   {category.name}
                 </Link>
@@ -192,7 +192,7 @@ export default function HomePage() {
             </div>
 
             <div className="lg:col-span-9">
-              <h2 className="max-w-3xl font-display text-[clamp(1.9rem,4.4vw,3.4rem)] leading-[1.25] font-medium text-charcoal">
+              <h2 className="max-w-3xl font-display text-[clamp(1.9rem,4.4vw,3.4rem)] leading-[1.25] font-medium text-navy">
                 یادگیری وقتی بهتر است که مشترک باشد.
               </h2>
 
@@ -212,7 +212,7 @@ export default function HomePage() {
       </section>
 
       {/* Offerings ----------------------------------------------------------- */}
-      <section className="bg-charcoal text-cream">
+      <section className="bg-navy text-cream">
         <Container className="py-16 sm:py-20 lg:py-24">
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-4">
@@ -241,7 +241,7 @@ export default function HomePage() {
       </section>
 
       {/* Principles ---------------------------------------------------------- */}
-      <section className="bg-sage text-charcoal">
+      <section className="bg-sage text-navy">
         <Container className="py-16 sm:py-20">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -250,7 +250,7 @@ export default function HomePage() {
                 سه چیزی که سر جایش می‌ماند.
               </h2>
             </div>
-            <p className="max-w-xs text-xs leading-7 text-charcoal/70 sm:text-sm">
+            <p className="max-w-xs text-xs leading-7 text-navy/70 sm:text-sm">
               بدون این سه، باشگاه فقط یک فهرست رویداد است.
             </p>
           </div>
@@ -259,11 +259,11 @@ export default function HomePage() {
             {principles.map((item) => (
               <li
                 key={item.number}
-                className="border-t border-charcoal/20 pt-5 sm:border-t-0 sm:border-s sm:px-6 sm:pt-0 sm:first:border-s-0 sm:first:ps-0 sm:last:pe-0"
+                className="border-t border-navy/20 pt-5 sm:border-t-0 sm:border-s sm:px-6 sm:pt-0 sm:first:border-s-0 sm:first:ps-0 sm:last:pe-0"
               >
-                <span className="text-[11px] text-charcoal/65">{item.number}</span>
+                <span className="text-[11px] text-navy/65">{item.number}</span>
                 <h3 className="mt-2 font-display text-xl leading-snug sm:text-2xl">{item.title}</h3>
-                <p className="mt-2 text-sm leading-7 text-charcoal/70">{item.body}</p>
+                <p className="mt-2 text-sm leading-7 text-navy/70">{item.body}</p>
               </li>
             ))}
           </ul>
@@ -276,13 +276,13 @@ export default function HomePage() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <SectionLabel>۰۴ — حوزه‌ها</SectionLabel>
-              <h2 className="mt-5 font-display text-[clamp(1.8rem,4vw,3rem)] leading-[1.25] font-medium text-charcoal">
+              <h2 className="mt-5 font-display text-[clamp(1.8rem,4vw,3rem)] leading-[1.25] font-medium text-navy">
                 از کجا شروع کنید؟
               </h2>
             </div>
             <Link
               href="/events"
-              className="text-sm text-ink-muted underline decoration-charcoal/25 underline-offset-4 transition-colors hover:text-clay hover:decoration-clay"
+              className="text-sm text-ink-muted underline decoration-navy/25 underline-offset-4 transition-colors hover:text-teal-strong hover:decoration-teal-strong"
             >
               دیدن همه رویدادها
             </Link>
@@ -302,7 +302,7 @@ export default function HomePage() {
                     />
                   </div>
                   <div className="mt-3 flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
-                    <span className="font-display text-lg leading-snug text-charcoal transition-colors group-hover:text-clay sm:text-xl">
+                    <span className="font-display text-lg leading-snug text-navy transition-colors group-hover:text-teal-strong sm:text-xl">
                       <span className="sr-only">دیدن رویدادهای </span>
                       {name}
                     </span>
@@ -335,7 +335,7 @@ export default function HomePage() {
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-5">
               <SectionLabel>۰۵ — پرسش‌های پرتکرار</SectionLabel>
-              <h2 className="mt-5 font-display text-[clamp(1.8rem,4vw,3rem)] leading-[1.25] font-medium text-charcoal">
+              <h2 className="mt-5 font-display text-[clamp(1.8rem,4vw,3rem)] leading-[1.25] font-medium text-navy">
                 سؤال‌هایی که پیش از شروع پرسیده می‌شود.
               </h2>
               <p className="mt-4 max-w-sm text-sm leading-8 text-ink-muted">
@@ -347,13 +347,13 @@ export default function HomePage() {
               <div className="border-t border-rule">
                 {faqs.map((faq) => (
                   <details key={faq.question} className="group border-b border-rule">
-                    <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 transition-colors hover:text-clay [&::-webkit-details-marker]:hidden">
-                      <span className="font-display text-lg leading-snug font-medium text-charcoal transition-colors group-hover:text-clay sm:text-xl">
+                    <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 transition-colors hover:text-teal-strong [&::-webkit-details-marker]:hidden">
+                      <span className="font-display text-lg leading-snug font-medium text-navy transition-colors group-hover:text-teal-strong sm:text-xl">
                         {faq.question}
                       </span>
                       <span
                         aria-hidden="true"
-                        className="relative mt-2 block size-4 shrink-0 text-charcoal/70 transition-transform duration-300 group-open:rotate-45"
+                        className="relative mt-2 block size-4 shrink-0 text-navy/70 transition-transform duration-300 group-open:rotate-45"
                       >
                         <span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-current" />
                         <span className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-current" />
@@ -374,7 +374,7 @@ export default function HomePage() {
       <section className="border-t border-rule bg-cream-deep">
         <Container className="py-16 text-center sm:py-20">
           <p className="text-[11px] text-ink-muted">۰۶ — قدم بعدی</p>
-          <h2 className="mx-auto mt-4 max-w-2xl font-display text-[clamp(1.9rem,4.6vw,3.4rem)] leading-[1.25] font-medium text-charcoal">
+          <h2 className="mx-auto mt-4 max-w-2xl font-display text-[clamp(1.9rem,4.6vw,3.4rem)] leading-[1.25] font-medium text-navy">
             اولین قدم، یک رویداد است.
           </h2>
           <p className="mx-auto mt-4 max-w-md text-sm leading-8 text-ink-muted">

@@ -36,10 +36,10 @@ function PriceRow({
 
   return (
     <div className="flex items-start justify-between gap-4 border-t border-line py-3 first:border-t-0 first:pt-0">
-      <span className="text-sm font-medium text-charcoal">{label}</span>
+      <span className="text-sm font-medium text-navy">{label}</span>
       <span className="text-end">
         {irr !== null ? (
-          <span className="block text-sm font-bold text-charcoal">{formatIrr(irr)}</span>
+          <span className="block text-sm font-bold text-navy">{formatIrr(irr)}</span>
         ) : null}
         {usd !== null ? (
           <span className="mt-0.5 block text-xs text-ink-muted">{formatUsd(usd)}</span>
@@ -110,7 +110,7 @@ export function EventTicketPanel({
     <div className="space-y-4">
       <Card className="p-5">
         <div className="flex items-center justify-between gap-3">
-          <h2 className="text-sm font-bold text-charcoal">
+          <h2 className="text-sm font-bold text-navy">
             {isPast ? "ضبط رویداد" : "بلیت رویداد"}
           </h2>
           {hasVerified ? <Badge tone="verified">بلیت تأییدشده</Badge> : null}
@@ -146,7 +146,7 @@ export function EventTicketPanel({
         ) : null}
 
         <div className="mt-4 border-t border-line pt-4">
-          <p className="text-xs font-bold text-charcoal">خرید در ایران (فیدیبو)</p>
+          <p className="text-xs font-bold text-navy">خرید در ایران (فیدیبو)</p>
 
           {event.fidibo_url ? (
             <ButtonLink
@@ -177,7 +177,7 @@ export function EventTicketPanel({
 
         {checkoutOptions.length > 0 ? (
           <div className="mt-4 border-t border-line pt-4">
-            <p className="text-xs font-bold text-charcoal">خرید بین‌المللی (کارت دلاری)</p>
+            <p className="text-xs font-bold text-navy">خرید بین‌المللی (کارت دلاری)</p>
 
             {isAuthenticated ? (
               <CheckoutButtons
@@ -195,11 +195,11 @@ export function EventTicketPanel({
       </Card>
 
       <Card className="p-5">
-        <h2 className="text-sm font-bold text-charcoal">دسترسی شما</h2>
+        <h2 className="text-sm font-bold text-navy">دسترسی شما</h2>
 
         {!isAuthenticated ? (
           <div className="mt-3">
-            <span className="inline-flex size-10 items-center justify-center rounded-full bg-sand/70 text-charcoal">
+            <span className="inline-flex size-10 items-center justify-center rounded-full bg-sand/70 text-navy">
               <LockIcon className="size-5" />
             </span>
             <p className="mt-3 text-xs leading-7 text-ink-muted">
@@ -255,7 +255,7 @@ export function EventTicketPanel({
             ) : null}
           </div>
         ) : pending.length > 0 ? (
-          <p className="mt-3 rounded-xl border border-accent/25 bg-accent/8 px-3 py-2 text-xs leading-7 text-accent-strong">
+          <p className="mt-3 rounded-xl border border-gold/30 bg-gold/12 px-3 py-2 text-xs leading-7 text-gold-strong">
             بلیت‌های {verifiedTypeLabels(pending)} شما در انتظار تأیید است. پس از تأیید،
             لینک‌های اختصاصی در همین بخش نمایش داده می‌شود.
           </p>
@@ -271,7 +271,7 @@ export function EventTicketPanel({
 
       {event.profiles ? (
         <Card className="p-5">
-          <h2 className="text-sm font-bold text-charcoal">سخنران</h2>
+          <h2 className="text-sm font-bold text-navy">سخنران</h2>
           <div className="mt-3 flex items-center gap-3">
             <Avatar
               src={event.profiles.avatar_url}
@@ -279,7 +279,7 @@ export function EventTicketPanel({
               className="size-12 shrink-0 text-base"
             />
             <div className="min-w-0">
-              <p className="truncate text-sm font-bold text-charcoal">
+              <p className="truncate text-sm font-bold text-navy">
                 {event.profiles.full_name ?? "سخنران مهر دانا"}
               </p>
               {event.profiles.profession ? (

@@ -21,17 +21,18 @@ Design the interface following the clean, trustworthy, community-first aesthetic
 
 ## Homepage Art Direction (Warm Editorial)
 
-The public homepage follows a warm, print-inspired editorial style. These tokens
-live in `src/app/globals.css` and are the reference for any new public page:
+The public homepage follows a warm, print-inspired editorial style. The paper
+tokens and the brand action colours both live here; see `src/app/globals.css`
+for the token source of truth.
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `cream` | `#F4EBDC` | Page background and light text on dark |
-| `cream-deep` / `sand` | `#ECE0CC` / `#E4D5BB` | Alternating section and artwork fills |
+| `cream` / `cream-deep` / `sand` | `#F4EBDC` / `#ECE0CC` / `#E4D5BB` | Page background, alternating sections, artwork fills |
 | `sage` | `#DCE3D2` | Calm accent section |
-| `charcoal` | `#1F1913` | Primary text, dark sections, footer |
-| `clay` | `#B5452C` | Actions, links on hover, small accents |
-| `rule` | `#D9CBB4` | Hairline dividers |
+| `navy` / `navy-soft` | `#06253E` / `#0B3352` | Headings, dark sections, primary text (brand ink from the logo) |
+| `teal` / `teal-strong` / `teal-deep` | `#00A69C` / `#007B73` / `#00605A` | Primary actions, verified badges, links (brand teal from the logo) |
+| `gold` / `gold-strong` | `#C29B58` / `#8A6A32` | Accents, badges, underline highlights (brand gold from the logo) |
+| `accent` | `#C8452F` | Errors and pending review states |
 
 - **Type:** `font-display` (Noto Naskh Arabic) for headings and the wordmark;
   Vazirmatn for body and UI. Both fonts are self-hosted via Fontsource.
@@ -40,3 +41,10 @@ live in `src/app/globals.css` and are the reference for any new public page:
 - **No stock photography:** artwork is drawn with CSS layers
   (`src/components/home/art.tsx`) so nothing is borrowed and the page stays light.
   Real event photos can replace those blocks without changing the layout.
+
+## Brand Palette Source
+
+The authoritative palette lives in `docs/palette/` (`colors.jpg`,
+`logo-06.svg`). The SVG logo uses `navy #06253E` and `teal #00A69C`, which are
+mapped onto the design tokens above (`navy`, `teal`, `gold`) for the rest of the
+site.

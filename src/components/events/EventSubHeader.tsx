@@ -11,13 +11,13 @@ export function EventSubHeader({ event }: { event: EventShellRow }) {
       <Container className="py-5">
         <Link
           href={`/events/${event.id}`}
-          className="inline-flex text-xs font-medium text-charcoal hover:underline"
+          className="inline-flex text-xs font-medium text-navy hover:underline"
         >
           بازگشت به توضیحات رویداد
         </Link>
 
         <div className="mt-2 flex flex-wrap items-center gap-2">
-          <h1 className="text-xl font-bold text-charcoal sm:text-2xl">{event.title}</h1>
+          <h1 className="text-xl font-bold text-navy sm:text-2xl">{event.title}</h1>
           <EventStatusBadge status={event.status} />
         </div>
       </Container>

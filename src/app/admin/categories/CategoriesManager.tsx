@@ -31,7 +31,7 @@ export function CategoriesManager({ categories }: { categories: CategoryRow[] })
   return (
     <div className="space-y-5">
       <Card className="p-5 sm:p-6">
-        <h2 className="text-base font-bold text-charcoal">
+        <h2 className="text-base font-bold text-navy">
           {editing ? "ویرایش دسته‌بندی" : "افزودن دسته‌بندی"}
         </h2>
 
@@ -102,7 +102,7 @@ export function CategoriesManager({ categories }: { categories: CategoryRow[] })
               className="flex items-center justify-between gap-3 px-5 py-3"
             >
               <div className="min-w-0">
-                <p className="truncate text-sm font-medium text-charcoal">{category.name}</p>
+                <p className="truncate text-sm font-medium text-navy">{category.name}</p>
                 <p dir="ltr" className="truncate text-start text-xs text-ink-muted">
                   {category.slug}
                 </p>

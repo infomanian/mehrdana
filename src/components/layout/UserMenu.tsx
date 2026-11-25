@@ -11,7 +11,7 @@ import { UserIcon } from "@/components/ui/icons";
 export function UserMenu({ email }: { email: string | null }) {
   return (
     <details className="group relative">
-      <summary className="flex size-10 cursor-pointer list-none items-center justify-center rounded-full border border-line bg-surface text-charcoal transition-colors hover:bg-canvas focus-visible:outline-2 [&::-webkit-details-marker]:hidden">
+      <summary className="flex size-10 cursor-pointer list-none items-center justify-center rounded-full border border-line bg-surface text-navy transition-colors hover:bg-canvas focus-visible:outline-2 [&::-webkit-details-marker]:hidden">
         <UserIcon className="size-5" />
         <span className="sr-only">منوی حساب کاربری</span>
       </summary>

@@ -25,10 +25,10 @@ export function FidiboCodesForm({ eventId }: { eventId: string }) {
   return (
     <Card className="p-5 sm:p-6">
       <div className="flex items-center gap-2">
-        <span className="inline-flex size-8 items-center justify-center rounded-lg bg-charcoal/8 text-charcoal">
+        <span className="inline-flex size-8 items-center justify-center rounded-lg bg-navy/8 text-navy">
           <TicketIcon className="size-4" />
         </span>
-        <h2 className="text-base font-bold text-charcoal">کدهای فیدیبو</h2>
+        <h2 className="text-base font-bold text-navy">کدهای فیدیبو</h2>
       </div>
 
       <p className="mt-2 text-xs leading-6 text-ink-muted">

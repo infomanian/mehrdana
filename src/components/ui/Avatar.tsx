@@ -25,7 +25,7 @@ export function Avatar({
       <span
         aria-hidden="true"
         className={cn(
-          "flex select-none items-center justify-center rounded-full bg-charcoal/8 text-xl font-bold text-charcoal",
+          "flex select-none items-center justify-center rounded-full bg-navy/8 text-xl font-bold text-navy",
           className,
         )}
       >

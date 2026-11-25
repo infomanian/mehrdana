@@ -7,11 +7,11 @@ export type ButtonVariant = "primary" | "ink" | "outline" | "ghost";
 export type ButtonSize = "sm" | "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: "bg-clay text-cream hover:bg-clay-strong",
-  ink: "bg-charcoal text-cream hover:bg-charcoal-soft",
+  primary: "bg-teal-strong text-white hover:bg-teal-deep",
+  ink: "bg-navy text-cream hover:bg-navy-soft",
   outline:
-    "border border-charcoal/25 text-charcoal hover:border-charcoal hover:bg-charcoal/5",
-  ghost: "text-charcoal hover:bg-charcoal/5",
+    "border border-navy/25 text-navy hover:border-navy hover:bg-navy/5",
+  ghost: "text-navy hover:bg-navy/5",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

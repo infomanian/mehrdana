@@ -65,7 +65,7 @@ export function LoginForm({
         <>
           <div
             role="status"
-            className="rounded-xl border border-verified/25 bg-verified/8 px-4 py-3 text-sm leading-7 text-charcoal"
+            className="rounded-xl border border-verified/25 bg-verified/8 px-4 py-3 text-sm leading-7 text-navy"
           >
             کد ۶ رقمی به{" "}
             <span dir="ltr" className="font-medium">
