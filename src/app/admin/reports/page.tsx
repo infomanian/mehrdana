@@ -38,14 +38,14 @@ export default async function AdminReportsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-navy-900">گزارش‌های کاربران</h1>
+      <h1 className="text-2xl font-bold text-charcoal">گزارش‌های کاربران</h1>
       <p className="mt-1 text-sm leading-7 text-ink-muted">
         گزارش‌های ارسال‌شده از اتاق گفتگو را بررسی و مدیریت کنید.
       </p>
 
       {reports.length === 0 ? (
         <Card className="mt-6 p-10 text-center">
-          <h2 className="text-base font-bold text-navy-900">گزارشی ثبت نشده است</h2>
+          <h2 className="text-base font-bold text-charcoal">گزارشی ثبت نشده است</h2>
           <p className="mt-2 text-sm leading-7 text-ink-muted">
             وقتی کاربری پیامی را گزارش دهد، همین‌جا نمایش داده می‌شود.
           </p>
@@ -57,7 +57,7 @@ export default async function AdminReportsPage() {
               <Card className="p-5">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex flex-wrap items-center gap-2">
-                    <Badge tone="navy">{report.reason}</Badge>
+                    <Badge tone="sand">{report.reason}</Badge>
                     {report.status === "open" ? (
                       <Badge className="bg-accent/10 text-accent-strong">باز</Badge>
                     ) : (

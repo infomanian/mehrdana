@@ -2,11 +2,12 @@ import type { ReactNode } from "react";
 
 import { cn } from "@/lib/cn";
 
-export type BadgeTone = "neutral" | "navy" | "accent" | "verified" | "onDark";
+export type BadgeTone = "neutral" | "sand" | "clay" | "accent" | "verified" | "onDark";
 
 const toneClasses: Record<BadgeTone, string> = {
   neutral: "bg-canvas text-ink-muted border border-line",
-  navy: "bg-navy-800/8 text-navy-800",
+  sand: "bg-sand/70 text-charcoal-soft",
+  clay: "bg-clay/12 text-clay-strong",
   accent: "bg-accent/10 text-accent-strong",
   verified: "bg-verified/12 text-verified-strong",
   onDark: "bg-white/12 text-white/85",

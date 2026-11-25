@@ -20,12 +20,7 @@ export function EventCover({
   className?: string;
 }) {
   return (
-    <div
-      className={cn(
-        "relative aspect-[16/9] overflow-hidden bg-navy-900",
-        className,
-      )}
-    >
+    <div className={cn("relative aspect-[16/9] overflow-hidden bg-sand", className)}>
       {src ? (
         <Image
           src={src}
@@ -37,16 +32,16 @@ export function EventCover({
         />
       ) : (
         <>
-          <div className="absolute inset-0 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950" />
+          <div className="absolute inset-0 bg-gradient-to-br from-cream-deep via-sand to-sand-deep" />
           <div
             aria-hidden="true"
-            className="absolute -top-10 -start-8 size-40 rounded-full bg-verified/20 blur-3xl"
+            className="absolute -top-10 -start-8 size-40 rounded-full bg-sage/70 blur-3xl"
           />
           <div
             aria-hidden="true"
-            className="absolute -bottom-12 end-4 size-44 rounded-full bg-accent-soft/20 blur-3xl"
+            className="absolute -bottom-12 end-4 size-44 rounded-full bg-clay/25 blur-3xl"
           />
-          <span className="absolute inset-0 flex items-center justify-center text-white/75">
+          <span className="absolute inset-0 flex items-center justify-center text-charcoal/40">
             <CalendarIcon className="size-9" />
           </span>
         </>

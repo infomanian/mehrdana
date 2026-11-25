@@ -16,10 +16,10 @@ export function EventComingSoon({
 }) {
   return (
     <Card className="mx-auto max-w-xl p-8 text-center">
-      <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-navy-800/8 text-navy-800">
+      <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-charcoal/8 text-charcoal">
         <Icon className="size-6" />
       </span>
-      <h2 className="mt-4 text-base font-bold text-navy-900">{title}</h2>
+      <h2 className="mt-4 text-base font-bold text-charcoal">{title}</h2>
       <p className="mt-2 text-sm leading-8 text-ink-muted">{body}</p>
       {note ? (
         <p className="mt-3 rounded-xl bg-canvas px-4 py-2 text-xs leading-6 text-ink-muted">

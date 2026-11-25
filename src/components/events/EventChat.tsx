@@ -219,7 +219,7 @@ export function EventChat({
     <div className="mx-auto max-w-3xl">
       <Card className="overflow-hidden">
         <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3">
-          <p className="text-sm font-bold text-navy-900">گفتگوی زنده رویداد</p>
+          <p className="text-sm font-bold text-charcoal">گفتگوی زنده رویداد</p>
           <p className="text-[11px] text-ink-muted">پیام‌ها فقط برای دارندگان بلیت</p>
         </div>
 
@@ -261,7 +261,7 @@ export function EventChat({
 
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
-                      <span className="truncate text-xs font-bold text-navy-900">
+                      <span className="truncate text-xs font-bold text-charcoal">
                         {message.sender_name ?? "عضو مهر دانا"}
                       </span>
                       <time className="shrink-0 text-[11px] text-ink-muted">
@@ -271,7 +271,7 @@ export function EventChat({
                     <p
                       className={cn(
                         "mt-1 whitespace-pre-wrap break-words rounded-2xl rounded-tr-md px-3 py-2 text-sm leading-7",
-                        isOwn ? "bg-navy-800/6 text-ink" : "bg-canvas text-ink",
+                        isOwn ? "bg-charcoal/6 text-ink" : "bg-canvas text-ink",
                       )}
                     >
                       {message.content}
@@ -284,7 +284,7 @@ export function EventChat({
                         type="button"
                         onClick={() => setOpenMenuId(openMenuId === message.id ? null : message.id)}
                         aria-label="گزینه‌های پیام"
-                        className="flex size-8 items-center justify-center rounded-full text-ink-muted hover:bg-canvas hover:text-navy-900"
+                        className="flex size-8 items-center justify-center rounded-full text-ink-muted hover:bg-canvas hover:text-charcoal"
                       >
                         ⋯
                       </button>
@@ -319,12 +319,12 @@ export function EventChat({
 
         {reportFor ? (
           <div className="border-t border-line bg-canvas/60 px-4 py-3">
-            <p className="text-xs font-bold text-navy-900">گزارش پیام</p>
+            <p className="text-xs font-bold text-charcoal">گزارش پیام</p>
             <div className="mt-2 flex flex-wrap items-center gap-2">
               <select
                 value={reportReason}
                 onChange={(event) => setReportReason(event.target.value)}
-                className="rounded-xl border border-line bg-surface px-3 py-2 text-sm text-ink outline-none focus:border-navy-800/40"
+                className="rounded-xl border border-line bg-surface px-3 py-2 text-sm text-ink outline-none focus:border-charcoal/40"
                 aria-label="دلیل گزارش"
               >
                 {REPORT_REASONS.map((reason) => (

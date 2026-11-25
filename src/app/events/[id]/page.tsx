@@ -104,11 +104,11 @@ export default async function EventDetailPage({
       <section className="py-16">
         <Container>
           <Card className="mx-auto max-w-lg p-8 text-center">
-            <h1 className="text-lg font-bold text-navy-900">رویداد در دسترس نیست</h1>
+            <h1 className="text-lg font-bold text-charcoal">رویداد در دسترس نیست</h1>
             <p className="mt-2 text-sm leading-7 text-ink-muted">
               اتصال به پایگاه داده برقرار نیست. چند لحظه بعد دوباره تلاش کنید.
             </p>
-            <Link href="/events" className="mt-4 inline-flex text-sm font-medium text-navy-800 hover:underline">
+            <Link href="/events" className="mt-4 inline-flex text-sm font-medium text-charcoal hover:underline">
               بازگشت به رویدادها
             </Link>
           </Card>
@@ -140,47 +140,47 @@ export default async function EventDetailPage({
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
 
-      <section className="bg-navy-900 text-white">
+      <section className="border-b border-rule bg-cream-deep">
         <Container className="py-8 sm:py-10">
           <Link
             href="/events"
-            className="inline-flex text-xs font-medium text-white/70 hover:text-white hover:underline"
+            className="inline-flex text-xs font-medium text-ink-muted transition-colors hover:text-clay hover:underline"
           >
             بازگشت به رویدادها
           </Link>
 
-          <div className="mt-4 grid gap-6 lg:grid-cols-2 lg:items-center">
+          <div className="mt-5 grid gap-6 lg:grid-cols-2 lg:items-center lg:gap-10">
             <EventCover
               src={event.cover_image_url}
               priority
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="rounded-2xl"
+              className="rounded-xl border border-rule"
             />
 
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
                 <EventStatusBadge status={event.status} />
-                {event.categories ? <Badge tone="onDark">{event.categories.name}</Badge> : null}
+                {event.categories ? <Badge tone="sand">{event.categories.name}</Badge> : null}
               </div>
 
-              <h1 className="mt-4 text-2xl font-bold leading-[1.4] sm:text-3xl">
+              <h1 className="mt-4 font-display text-[clamp(1.7rem,3.6vw,2.6rem)] leading-[1.3] font-medium text-charcoal">
                 {event.title}
               </h1>
 
-              <dl className="mt-5 space-y-3 text-sm text-white/85">
+              <dl className="mt-5 space-y-3 text-sm text-ink-muted">
                 <div className="flex items-center gap-2.5">
                   <dt className="sr-only">تاریخ</dt>
-                  <CalendarIcon className="size-5 shrink-0 text-white/60" />
+                  <CalendarIcon className="size-5 shrink-0 text-charcoal/45" />
                   <dd>{formatEventDate(event.event_date)}</dd>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <dt className="sr-only">ساعت</dt>
-                  <ClockIcon className="size-5 shrink-0 text-white/60" />
+                  <ClockIcon className="size-5 shrink-0 text-charcoal/45" />
                   <dd>{formatEventTime(event.event_date)}</dd>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <dt className="sr-only">محل برگزاری</dt>
-                  <MapPinIcon className="size-5 shrink-0 text-white/60" />
+                  <MapPinIcon className="size-5 shrink-0 text-charcoal/45" />
                   <dd>{event.location_address ?? "آنلاین"}</dd>
                 </div>
               </dl>
@@ -189,7 +189,7 @@ export default async function EventDetailPage({
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {modes.map((mode) => (
                     <li key={mode}>
-                      <Badge tone="onDark">{mode}</Badge>
+                      <Badge>{mode}</Badge>
                     </li>
                   ))}
                 </ul>
@@ -222,7 +222,7 @@ export default async function EventDetailPage({
         <Container>
           <div className="grid items-start gap-6 lg:grid-cols-[1fr_21rem]">
             <Card className="p-5 sm:p-6">
-              <h2 className="text-base font-bold text-navy-900">درباره رویداد</h2>
+              <h2 className="text-base font-bold text-charcoal">درباره رویداد</h2>
               {event.description ? (
                 <p className="mt-3 whitespace-pre-line text-sm leading-8 text-ink">
                   {event.description}

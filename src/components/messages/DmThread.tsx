@@ -179,7 +179,7 @@ export function DmThread({
     <div className="mx-auto max-w-3xl">
       <Card className="overflow-hidden">
         <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3">
-          <p className="text-sm font-bold text-navy-900">گفتگوی خصوصی</p>
+          <p className="text-sm font-bold text-charcoal">گفتگوی خصوصی</p>
           <Button type="button" variant="ghost" size="sm" disabled={blocking} onClick={block}>
             {blocking ? "در حال مسدودسازی…" : "مسدود کردن"}
           </Button>
@@ -223,7 +223,7 @@ export function DmThread({
                   />
                   <div className={cn("min-w-0 flex-1", isOwn && "text-end")}>
                     <div className={cn("flex items-center gap-2", isOwn && "flex-row-reverse")}>
-                      <span className="truncate text-xs font-bold text-navy-900">
+                      <span className="truncate text-xs font-bold text-charcoal">
                         {message.sender_name ?? "عضو مهر دانا"}
                       </span>
                       <time className="shrink-0 text-[11px] text-ink-muted">
@@ -234,7 +234,7 @@ export function DmThread({
                       className={cn(
                         "mt-1 inline-block max-w-full whitespace-pre-wrap break-words rounded-2xl px-3 py-2 text-sm leading-7",
                         isOwn
-                          ? "rounded-tr-md bg-navy-800 text-white"
+                          ? "rounded-tr-md bg-charcoal text-white"
                           : "rounded-tl-md bg-canvas text-ink",
                       )}
                     >

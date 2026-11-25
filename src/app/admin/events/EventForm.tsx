@@ -60,7 +60,7 @@ export function EventForm({
 
   return (
     <Card className="p-5 sm:p-6">
-      <h2 className="text-base font-bold text-navy-900">
+      <h2 className="text-base font-bold text-charcoal">
         {mode === "create" ? "رویداد جدید" : "ویرایش رویداد"}
       </h2>
 
@@ -195,7 +195,7 @@ export function EventForm({
         </Field>
 
         <fieldset>
-          <legend className="text-sm font-bold text-navy-900">قیمت‌ها</legend>
+          <legend className="text-sm font-bold text-charcoal">قیمت‌ها</legend>
           <p className="mt-1 text-xs leading-6 text-ink-muted">
             قیمت‌ها را به تومان وارد کنید (به‌صورت خودکار ذخیره می‌شود). قیمت دلاری
             اختیاری است و فقط برای کاربران خارج از ایران نمایش داده می‌شود.

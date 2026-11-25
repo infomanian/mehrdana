@@ -83,14 +83,14 @@ export default async function EditEventPage({
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
-            <h1 className="truncate text-2xl font-bold text-navy-900">{event.title}</h1>
+            <h1 className="truncate text-2xl font-bold text-charcoal">{event.title}</h1>
             <EventStatusBadge status={event.status} />
           </div>
           <Link
             href={`/events/${id}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-1 inline-flex text-sm font-medium text-navy-800 hover:underline"
+            className="mt-1 inline-flex text-sm font-medium text-charcoal hover:underline"
           >
             مشاهده صفحه عمومی رویداد
           </Link>
@@ -121,7 +121,7 @@ export default async function EditEventPage({
         <FidiboCodesForm eventId={id} />
 
         <Card className="p-5 sm:p-6">
-          <h2 className="text-base font-bold text-navy-900">کدهای ثبت‌شده ({codes.length})</h2>
+          <h2 className="text-base font-bold text-charcoal">کدهای ثبت‌شده ({codes.length})</h2>
           {codes.length === 0 ? (
             <p className="mt-2 text-sm leading-7 text-ink-muted">
               هنوز کدی ثبت نشده است.
@@ -131,7 +131,7 @@ export default async function EditEventPage({
               {codes.map((code) => (
                 <li key={code.id} className="flex items-center justify-between gap-3 py-2.5">
                   <div className="min-w-0">
-                    <p dir="ltr" className="truncate text-start text-xs font-medium text-navy-900">
+                    <p dir="ltr" className="truncate text-start text-xs font-medium text-charcoal">
                       {code.code}
                     </p>
                     <p className="text-[11px] text-ink-muted">

@@ -34,7 +34,7 @@ export default async function NewEventPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="text-2xl font-bold text-navy-900">ساخت رویداد جدید</h1>
+      <h1 className="text-2xl font-bold text-charcoal">ساخت رویداد جدید</h1>
       <p className="mt-1 text-sm leading-7 text-ink-muted">
         پس از ساخت، تصویر کاور و لینک‌های اختصاصی را از صفحه ویرایش اضافه کنید.
       </p>

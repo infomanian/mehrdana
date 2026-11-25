@@ -3,26 +3,8 @@ import Link from "next/link";
 
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { siteConfig } from "@/lib/site";
-
-/** Section eyebrow: a hairline plus a small editorial label. */
-function SectionLabel({ children, tone = "dark" }: { children: React.ReactNode; tone?: "dark" | "light" }) {
-  return (
-    <p
-      className={
-        tone === "light"
-          ? "flex items-center gap-3 text-[11px] font-medium text-cream/60"
-          : "flex items-center gap-3 text-[11px] font-medium text-ink-muted"
-      }
-    >
-      <span
-        aria-hidden="true"
-        className={tone === "light" ? "h-px w-8 bg-cream/35" : "h-px w-8 bg-charcoal/35"}
-      />
-      {children}
-    </p>
-  );
-}
 
 const categories = [
   {

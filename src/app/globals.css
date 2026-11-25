@@ -30,11 +30,7 @@
   --color-ink: #1f1913;
   --color-ink-muted: #6a5f51;
 
-  /* Kept for the event/chatholder surfaces of later modules. */
-  --color-navy-950: #08182c;
-  --color-navy-900: #0f294a;
-  --color-navy-800: #1b365d;
-  --color-navy-700: #274a78;
+  /* Semantic accents that survive the warm palette. */
   --color-accent: #c8452f;
   --color-accent-strong: #a93522;
   --color-accent-soft: #e85d4a;

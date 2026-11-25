@@ -115,13 +115,13 @@ export function AvatarUploader({
           {busy ? (
             <span
               aria-hidden="true"
-              className="absolute inset-0 rounded-full bg-navy-900/25"
+              className="absolute inset-0 rounded-full bg-charcoal/25"
             />
           ) : null}
         </div>
 
         <div className="min-w-0">
-          <p className="text-sm font-medium text-navy-900">تصویر پروفایل</p>
+          <p className="text-sm font-medium text-charcoal">تصویر پروفایل</p>
           <p className="mt-0.5 text-xs leading-6 text-ink-muted">
             JPG، PNG یا WebP — حداکثر ۲ مگابایت.
           </p>

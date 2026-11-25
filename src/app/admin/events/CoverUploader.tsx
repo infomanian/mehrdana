@@ -97,7 +97,7 @@ export function CoverUploader({
 
   return (
     <Card className="p-5 sm:p-6">
-      <h2 className="text-base font-bold text-navy-900">تصویر کاور</h2>
+      <h2 className="text-base font-bold text-charcoal">تصویر کاور</h2>
       <p className="mt-1 text-xs leading-6 text-ink-muted">
         JPG، PNG یا WebP — حداکثر ۴ مگابایت. نسبت تصویر ۱۶:۹ پیشنهاد می‌شود.
       </p>
@@ -116,7 +116,7 @@ export function CoverUploader({
         )}
 
         {busy ? (
-          <span aria-hidden="true" className="mt-3 block h-2 w-full animate-pulse rounded-full bg-navy-800/8" />
+          <span aria-hidden="true" className="mt-3 block h-2 w-full animate-pulse rounded-full bg-charcoal/8" />
         ) : null}
       </div>
 

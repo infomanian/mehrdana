@@ -41,10 +41,10 @@ export default async function EventChatPage({
         <section className="py-12 sm:py-16">
           <Container>
             <Card className="mx-auto max-w-md p-8 text-center">
-              <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-navy-800/8 text-navy-800">
+              <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-charcoal/8 text-charcoal">
                 <LockIcon className="size-6" />
               </span>
-              <h2 className="mt-4 text-base font-bold text-navy-900">ورود به اتاق گفتگو</h2>
+              <h2 className="mt-4 text-base font-bold text-charcoal">ورود به اتاق گفتگو</h2>
               <p className="mt-2 text-sm leading-7 text-ink-muted">
                 اتاق گفتگو مخصوص دارندگان بلیت تأییدشده است. برای گفتگو ابتدا وارد حساب
                 شوید.
@@ -77,10 +77,10 @@ export default async function EventChatPage({
         <section className="py-12 sm:py-16">
           <Container>
             <Card className="mx-auto max-w-md p-8 text-center">
-              <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-navy-800/8 text-navy-800">
+              <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-charcoal/8 text-charcoal">
                 <LockIcon className="size-6" />
               </span>
-              <h2 className="mt-4 text-base font-bold text-navy-900">نیاز به بلیت تأییدشده</h2>
+              <h2 className="mt-4 text-base font-bold text-charcoal">نیاز به بلیت تأییدشده</h2>
               <p className="mt-2 text-sm leading-7 text-ink-muted">
                 برای ورود به اتاق گفتگو باید بلیت تأییدشده این رویداد را داشته باشید. پس از
                 خرید و تأیید، این بخش برای شما باز می‌شود.

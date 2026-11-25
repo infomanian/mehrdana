@@ -76,7 +76,7 @@ export default async function AdminTicketsPage({
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-navy-900">مدیریت بلیت‌ها</h1>
+      <h1 className="text-2xl font-bold text-charcoal">مدیریت بلیت‌ها</h1>
       <p className="mt-1 text-sm leading-7 text-ink-muted">
         بلیت‌های در انتظار را تأیید یا رد کنید.
       </p>
@@ -92,8 +92,8 @@ export default async function AdminTicketsPage({
               aria-current={isActive ? "page" : undefined}
               className={
                 isActive
-                  ? "rounded-full bg-navy-800 px-3 py-1.5 text-xs font-medium text-white"
-                  : "rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted hover:text-navy-900"
+                  ? "rounded-full bg-charcoal px-3 py-1.5 text-xs font-medium text-white"
+                  : "rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted hover:text-charcoal"
               }
             >
               {filter.label}
@@ -104,7 +104,7 @@ export default async function AdminTicketsPage({
 
       {tickets.length === 0 ? (
         <Card className="mt-6 p-10 text-center">
-          <h2 className="text-base font-bold text-navy-900">بلیتی ثبت نشده است</h2>
+          <h2 className="text-base font-bold text-charcoal">بلیتی ثبت نشده است</h2>
           <p className="mt-2 text-sm leading-7 text-ink-muted">
             با خرید یا ثبت کد فیدیبو، بلیت‌ها در همین صفحه ظاهر می‌شوند.
           </p>
@@ -127,7 +127,7 @@ export default async function AdminTicketsPage({
               <tbody>
                 {tickets.map((ticket) => (
                   <tr key={ticket.id} className="border-t border-line align-middle">
-                    <td className="px-5 py-3 font-medium text-navy-900">
+                    <td className="px-5 py-3 font-medium text-charcoal">
                       {ticket.events?.title ?? "—"}
                     </td>
                     <td className="px-3 py-3 text-xs text-ink">{ticketTypeLabels[ticket.ticket_type]}</td>
@@ -156,7 +156,7 @@ export default async function AdminTicketsPage({
             {tickets.map((ticket) => (
               <li key={ticket.id} className="p-4">
                 <div className="flex items-start justify-between gap-3">
-                  <p className="font-medium text-navy-900">{ticket.events?.title ?? "—"}</p>
+                  <p className="font-medium text-charcoal">{ticket.events?.title ?? "—"}</p>
                   <StatusBadge status={ticket.status} />
                 </div>
 

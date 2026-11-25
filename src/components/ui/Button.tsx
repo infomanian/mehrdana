@@ -3,13 +3,12 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import { cn } from "@/lib/cn";
 
-export type ButtonVariant = "primary" | "ink" | "navy" | "outline" | "ghost";
+export type ButtonVariant = "primary" | "ink" | "outline" | "ghost";
 export type ButtonSize = "sm" | "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary: "bg-clay text-cream hover:bg-clay-strong",
   ink: "bg-charcoal text-cream hover:bg-charcoal-soft",
-  navy: "bg-navy-800 text-white hover:bg-navy-900",
   outline:
     "border border-charcoal/25 text-charcoal hover:border-charcoal hover:bg-charcoal/5",
   ghost: "text-charcoal hover:bg-charcoal/5",

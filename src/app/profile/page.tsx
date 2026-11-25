@@ -97,7 +97,7 @@ export default async function ProfilePage({
         <div className="mx-auto w-full max-w-4xl">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <h1 className="text-2xl font-bold text-navy-900 sm:text-3xl">پروفایل من</h1>
+              <h1 className="text-2xl font-bold text-charcoal sm:text-3xl">پروفایل من</h1>
               <p className="mt-2 text-sm leading-7 text-ink-muted">
                 اطلاعات عمومی، حریم خصوصی و سابقه بلیت‌های خود را از اینجا مدیریت کنید.
               </p>
@@ -129,10 +129,10 @@ export default async function ProfilePage({
 
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
-                      <h2 className="truncate text-lg font-bold text-navy-900">
+                      <h2 className="truncate text-lg font-bold text-charcoal">
                         {profile.full_name ?? "کاربر مهر دانا"}
                       </h2>
-                      <Badge tone="navy">{roleLabels[profile.role]}</Badge>
+                      <Badge tone="sand">{roleLabels[profile.role]}</Badge>
                       {!profile.is_public ? <Badge>پروفایل مخفی</Badge> : null}
                     </div>
 
@@ -164,7 +164,7 @@ export default async function ProfilePage({
 
             <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line bg-canvas/60 px-5 py-4 sm:px-6">
               <div className="max-w-md">
-                <p className="text-sm font-medium text-navy-900">
+                <p className="text-sm font-medium text-charcoal">
                   نمایش پروفایل در فهرست شرکت‌کنندگان
                 </p>
                 <p className="mt-0.5 text-xs leading-6 text-ink-muted">
@@ -197,8 +197,8 @@ export default async function ProfilePage({
                   aria-current={isActive ? "page" : undefined}
                   className={
                     isActive
-                      ? "flex-1 whitespace-nowrap rounded-full bg-navy-800 px-4 py-2 text-center text-sm font-medium text-white"
-                      : "flex-1 whitespace-nowrap rounded-full px-4 py-2 text-center text-sm font-medium text-ink-muted transition-colors hover:bg-canvas hover:text-navy-900"
+                      ? "flex-1 whitespace-nowrap rounded-full bg-charcoal px-4 py-2 text-center text-sm font-medium text-white"
+                      : "flex-1 whitespace-nowrap rounded-full px-4 py-2 text-center text-sm font-medium text-ink-muted transition-colors hover:bg-canvas hover:text-charcoal"
                   }
                 >
                   {tab.label}
@@ -213,7 +213,7 @@ export default async function ProfilePage({
                 <ProfileForm initial={formValues} categories={categories} />
 
                 <Card className="p-5">
-                  <h2 className="text-sm font-bold text-navy-900">حریم خصوصی و حساب</h2>
+                  <h2 className="text-sm font-bold text-charcoal">حریم خصوصی و حساب</h2>
                   <p className="mt-1 text-xs leading-6 text-ink-muted">
                     برای خروج از حساب روی دکمه زیر بزنید. با خروج، نشست این دستگاه بسته
                     می‌شود و برای ورود دوباره به کد ایمیل نیاز دارید.
@@ -253,7 +253,7 @@ function MissingProfile() {
     <section className="py-12">
       <Container>
         <Card className="mx-auto max-w-md p-8 text-center">
-          <h1 className="text-lg font-bold text-navy-900">پروفایل شما پیدا نشد</h1>
+          <h1 className="text-lg font-bold text-charcoal">پروفایل شما پیدا نشد</h1>
           <p className="mt-2 text-sm leading-7 text-ink-muted">
             حساب شما ساخته شده است اما اطلاعات پروفایل در دسترس نیست. یک‌بار از حساب خارج
             شوید و دوباره وارد شوید. اگر مشکل ادامه داشت به پشتیبانی اطلاع دهید.

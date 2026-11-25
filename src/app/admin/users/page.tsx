@@ -50,7 +50,7 @@ export default async function AdminUsersPage({
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-navy-900">کاربران</h1>
+      <h1 className="text-2xl font-bold text-charcoal">کاربران</h1>
       <p className="mt-1 text-sm leading-7 text-ink-muted">
         جستجوی کاربران و مدیریت مسدودسازی کامل (بن).
       </p>
@@ -66,7 +66,7 @@ export default async function AdminUsersPage({
         />
         <button
           type="submit"
-          className="rounded-full bg-navy-800 px-5 text-sm font-medium text-white hover:bg-navy-900"
+          className="rounded-full bg-charcoal px-5 text-sm font-medium text-white hover:bg-charcoal"
         >
           جستجو
         </button>
@@ -74,7 +74,7 @@ export default async function AdminUsersPage({
 
       {users.length === 0 ? (
         <Card className="mt-6 p-10 text-center">
-          <h2 className="text-base font-bold text-navy-900">کاربری پیدا نشد</h2>
+          <h2 className="text-base font-bold text-charcoal">کاربری پیدا نشد</h2>
           <p className="mt-2 text-sm leading-7 text-ink-muted">عبارت دیگری را جستجو کنید.</p>
         </Card>
       ) : (
@@ -84,10 +84,10 @@ export default async function AdminUsersPage({
               <li key={user.id} className="flex items-center justify-between gap-3 px-5 py-3">
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
-                    <p className="truncate text-sm font-medium text-navy-900">
+                    <p className="truncate text-sm font-medium text-charcoal">
                       {user.full_name ?? "کاربر مهر دانا"}
                     </p>
-                    <Badge tone="navy">{roleLabels[user.role]}</Badge>
+                    <Badge tone="sand">{roleLabels[user.role]}</Badge>
                     {user.is_banned ? (
                       <Badge className="bg-red-50 text-red-700">بن‌شده</Badge>
                     ) : null}

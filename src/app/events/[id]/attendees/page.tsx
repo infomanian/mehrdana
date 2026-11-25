@@ -66,10 +66,10 @@ export default async function EventAttendeesPage({
         <section className="py-12 sm:py-16">
           <Container>
             <Card className="mx-auto max-w-md p-8 text-center">
-              <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-navy-800/8 text-navy-800">
+              <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-charcoal/8 text-charcoal">
                 <LockIcon className="size-6" />
               </span>
-              <h2 className="mt-4 text-base font-bold text-navy-900">ورود به فهرست شرکت‌کنندگان</h2>
+              <h2 className="mt-4 text-base font-bold text-charcoal">ورود به فهرست شرکت‌کنندگان</h2>
               <p className="mt-2 text-sm leading-7 text-ink-muted">
                 فهرست شرکت‌کنندگان مخصوص دارندگان بلیت تأییدشده است. برای دیدن آن ابتدا وارد
                 حساب شوید.
@@ -100,10 +100,10 @@ export default async function EventAttendeesPage({
         <section className="py-12 sm:py-16">
           <Container>
             <Card className="mx-auto max-w-md p-8 text-center">
-              <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-navy-800/8 text-navy-800">
+              <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-charcoal/8 text-charcoal">
                 <LockIcon className="size-6" />
               </span>
-              <h2 className="mt-4 text-base font-bold text-navy-900">نیاز به بلیت تأییدشده</h2>
+              <h2 className="mt-4 text-base font-bold text-charcoal">نیاز به بلیت تأییدشده</h2>
               <p className="mt-2 text-sm leading-7 text-ink-muted">
                 برای دیدن شرکت‌کنندگان و شبکه‌سازی باید بلیت تأییدشده این رویداد را داشته
                 باشید.
@@ -165,8 +165,8 @@ export default async function EventAttendeesPage({
               className={cn(
                 "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
                 !interest && !common
-                  ? "border-navy-800 bg-navy-800 text-white"
-                  : "border-line bg-surface text-ink-muted hover:text-navy-900",
+                  ? "border-charcoal bg-charcoal text-white"
+                  : "border-line bg-surface text-ink-muted hover:text-charcoal",
               )}
             >
               همه
@@ -179,7 +179,7 @@ export default async function EventAttendeesPage({
                 "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
                 common
                   ? "border-verified-strong bg-verified/12 text-verified-strong"
-                  : "border-line bg-surface text-ink-muted hover:text-navy-900",
+                  : "border-line bg-surface text-ink-muted hover:text-charcoal",
               )}
             >
               علایق مشترک با من
@@ -194,7 +194,7 @@ export default async function EventAttendeesPage({
                   "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
                   interest === tag
                     ? "border-verified-strong bg-verified/12 text-verified-strong"
-                    : "border-line bg-surface text-ink-muted hover:text-navy-900",
+                    : "border-line bg-surface text-ink-muted hover:text-charcoal",
                 )}
               >
                 {tag}
@@ -204,7 +204,7 @@ export default async function EventAttendeesPage({
 
           {attendees.length === 0 ? (
             <Card className="mt-6 p-10 text-center">
-              <h2 className="text-base font-bold text-navy-900">شرکت‌کننده‌ای یافت نشد</h2>
+              <h2 className="text-base font-bold text-charcoal">شرکت‌کننده‌ای یافت نشد</h2>
               <p className="mx-auto mt-2 max-w-md text-sm leading-7 text-ink-muted">
                 {interest || common
                   ? "با این فیلتر، شرکت‌کننده‌ای پیدا نشد."

@@ -36,7 +36,7 @@ export default async function DmThreadPage({
       <section className="py-16">
         <Container>
           <Card className="mx-auto max-w-md p-8 text-center">
-            <h1 className="text-lg font-bold text-navy-900">گفتگو در دسترس نیست</h1>
+            <h1 className="text-lg font-bold text-charcoal">گفتگو در دسترس نیست</h1>
             <p className="mt-2 text-sm leading-7 text-ink-muted">
               این گفتگو در دسترس شما نیست یا یکی از طرفین ارتباط را قطع کرده است.
             </p>
@@ -69,7 +69,7 @@ export default async function DmThreadPage({
         <div className="mx-auto max-w-3xl">
           <Link
             href="/messages"
-            className="inline-flex text-xs font-medium text-navy-800 hover:underline"
+            className="inline-flex text-xs font-medium text-charcoal hover:underline"
           >
             بازگشت به پیام‌ها
           </Link>
@@ -81,7 +81,7 @@ export default async function DmThreadPage({
               size={40}
               className="size-10 shrink-0 text-sm"
             />
-            <h1 className="truncate text-xl font-bold text-navy-900">
+            <h1 className="truncate text-xl font-bold text-charcoal">
               {partner?.other_name ?? "عضو مهر دانا"}
             </h1>
           </div>

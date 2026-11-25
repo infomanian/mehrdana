@@ -25,11 +25,11 @@ export function EventCard({ event }: { event: EventCardRow }) {
           <div className="flex flex-wrap items-center gap-2">
             <EventStatusBadge status={event.status} />
             {event.categories ? (
-              <Badge tone="navy">{event.categories.name}</Badge>
+              <Badge tone="sand">{event.categories.name}</Badge>
             ) : null}
           </div>
 
-          <h3 className="mt-3 line-clamp-2 text-base font-bold leading-7 text-navy-900">
+          <h3 className="mt-3 line-clamp-2 font-display text-lg leading-7 font-medium text-charcoal">
             {event.title}
           </h3>
 
@@ -56,7 +56,7 @@ export function EventCard({ event }: { event: EventCardRow }) {
                 className="size-8 shrink-0 text-xs"
               />
               <div className="min-w-0">
-                <p className="truncate text-xs font-medium text-navy-900">{speakerName}</p>
+                <p className="truncate text-xs font-medium text-charcoal">{speakerName}</p>
                 {event.profiles?.profession ? (
                   <p className="truncate text-[11px] text-ink-muted">
                     {event.profiles.profession}
@@ -68,7 +68,7 @@ export function EventCard({ event }: { event: EventCardRow }) {
             <p
               className={cn(
                 "shrink-0 whitespace-nowrap text-sm font-bold",
-                price ? "text-navy-900" : "text-xs font-medium text-ink-muted",
+                price ? "text-charcoal" : "text-xs font-medium text-ink-muted",
               )}
             >
               {price ?? "قیمت به‌زودی"}

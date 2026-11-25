@@ -18,41 +18,41 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       <div className="border-b border-line bg-surface">
         <Container className="flex min-h-14 flex-wrap items-center justify-between gap-3 py-2">
           <div className="flex items-center gap-3">
-            <Badge tone="navy">مدیریت</Badge>
+            <Badge tone="clay">مدیریت</Badge>
             <nav aria-label="بخش‌های مدیریت">
               <Link
                 href="/admin"
-                className="rounded-full px-3 py-1.5 text-sm font-medium text-navy-900 hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-sm font-medium text-charcoal hover:bg-canvas"
               >
                 داشبورد
               </Link>
               <Link
                 href="/admin/events"
-                className="rounded-full px-3 py-1.5 text-sm font-medium text-navy-900 hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-sm font-medium text-charcoal hover:bg-canvas"
               >
                 رویدادها
               </Link>
               <Link
                 href="/admin/categories"
-                className="rounded-full px-3 py-1.5 text-sm font-medium text-navy-900 hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-sm font-medium text-charcoal hover:bg-canvas"
               >
                 دسته‌بندی‌ها
               </Link>
               <Link
                 href="/admin/tickets"
-                className="rounded-full px-3 py-1.5 text-sm font-medium text-navy-900 hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-sm font-medium text-charcoal hover:bg-canvas"
               >
                 بلیت‌ها
               </Link>
               <Link
                 href="/admin/users"
-                className="rounded-full px-3 py-1.5 text-sm font-medium text-navy-900 hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-sm font-medium text-charcoal hover:bg-canvas"
               >
                 کاربران
               </Link>
               <Link
                 href="/admin/reports"
-                className="rounded-full px-3 py-1.5 text-sm font-medium text-navy-900 hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-sm font-medium text-charcoal hover:bg-canvas"
               >
                 گزارش‌ها
               </Link>
@@ -60,8 +60,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           </div>
 
           <Link
-            href="/events"
-            className="text-xs font-medium text-ink-muted hover:text-navy-900 hover:underline"
+            href="/"
+            className="text-xs font-medium text-ink-muted hover:text-ink hover:underline"
           >
             مشاهده سایت
           </Link>

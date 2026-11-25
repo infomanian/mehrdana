@@ -42,7 +42,7 @@ export default async function AdminDashboardPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-navy-900">داشبورد مدیریت</h1>
+      <h1 className="text-2xl font-bold text-charcoal">داشبورد مدیریت</h1>
       <p className="mt-1 text-sm leading-7 text-ink-muted">
         نمای کلی و دسترسی سریع به بخش‌های مدیریت.
       </p>
@@ -51,20 +51,20 @@ export default async function AdminDashboardPage() {
         {stats.map((stat) => (
           <Link key={stat.label} href={stat.href}>
             <Card interactive className="p-5">
-              <p className="text-3xl font-bold text-navy-900">{stat.value}</p>
+              <p className="text-3xl font-bold text-charcoal">{stat.value}</p>
               <p className="mt-1 text-sm text-ink-muted">{stat.label}</p>
             </Card>
           </Link>
         ))}
       </div>
 
-      <h2 className="mt-8 text-sm font-bold text-navy-900">دسترسی سریع</h2>
+      <h2 className="mt-8 text-sm font-bold text-charcoal">دسترسی سریع</h2>
       <div className="mt-3 flex flex-wrap gap-2">
         {quickLinks.map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            className="rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium text-navy-900 transition-colors hover:border-navy-800/25 hover:bg-canvas"
+            className="rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium text-charcoal transition-colors hover:border-charcoal/25 hover:bg-canvas"
           >
             {link.label}
           </Link>

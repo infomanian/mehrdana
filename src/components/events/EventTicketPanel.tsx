@@ -36,10 +36,10 @@ function PriceRow({
 
   return (
     <div className="flex items-start justify-between gap-4 border-t border-line py-3 first:border-t-0 first:pt-0">
-      <span className="text-sm font-medium text-navy-900">{label}</span>
+      <span className="text-sm font-medium text-charcoal">{label}</span>
       <span className="text-end">
         {irr !== null ? (
-          <span className="block text-sm font-bold text-navy-900">{formatIrr(irr)}</span>
+          <span className="block text-sm font-bold text-charcoal">{formatIrr(irr)}</span>
         ) : null}
         {usd !== null ? (
           <span className="mt-0.5 block text-xs text-ink-muted">{formatUsd(usd)}</span>
@@ -110,7 +110,7 @@ export function EventTicketPanel({
     <div className="space-y-4">
       <Card className="p-5">
         <div className="flex items-center justify-between gap-3">
-          <h2 className="text-sm font-bold text-navy-900">
+          <h2 className="text-sm font-bold text-charcoal">
             {isPast ? "ضبط رویداد" : "بلیت رویداد"}
           </h2>
           {hasVerified ? <Badge tone="verified">بلیت تأییدشده</Badge> : null}
@@ -146,7 +146,7 @@ export function EventTicketPanel({
         ) : null}
 
         <div className="mt-4 border-t border-line pt-4">
-          <p className="text-xs font-bold text-navy-900">خرید در ایران (فیدیبو)</p>
+          <p className="text-xs font-bold text-charcoal">خرید در ایران (فیدیبو)</p>
 
           {event.fidibo_url ? (
             <ButtonLink
@@ -177,7 +177,7 @@ export function EventTicketPanel({
 
         {checkoutOptions.length > 0 ? (
           <div className="mt-4 border-t border-line pt-4">
-            <p className="text-xs font-bold text-navy-900">خرید بین‌المللی (کارت دلاری)</p>
+            <p className="text-xs font-bold text-charcoal">خرید بین‌المللی (کارت دلاری)</p>
 
             {isAuthenticated ? (
               <CheckoutButtons
@@ -195,11 +195,11 @@ export function EventTicketPanel({
       </Card>
 
       <Card className="p-5">
-        <h2 className="text-sm font-bold text-navy-900">دسترسی شما</h2>
+        <h2 className="text-sm font-bold text-charcoal">دسترسی شما</h2>
 
         {!isAuthenticated ? (
           <div className="mt-3">
-            <span className="inline-flex size-10 items-center justify-center rounded-full bg-navy-800/8 text-navy-800">
+            <span className="inline-flex size-10 items-center justify-center rounded-full bg-sand/70 text-charcoal">
               <LockIcon className="size-5" />
             </span>
             <p className="mt-3 text-xs leading-7 text-ink-muted">
@@ -225,7 +225,7 @@ export function EventTicketPanel({
                 href={access.skyroom_link}
                 target="_blank"
                 rel="noopener noreferrer"
-                variant="navy"
+                variant="ink"
                 className="w-full"
               >
                 <VideoIcon className="size-4" />
@@ -238,7 +238,7 @@ export function EventTicketPanel({
                 href={access.recording_media_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                variant="navy"
+                variant="ink"
                 className="w-full"
               >
                 <PlayIcon className="size-4" />
@@ -271,7 +271,7 @@ export function EventTicketPanel({
 
       {event.profiles ? (
         <Card className="p-5">
-          <h2 className="text-sm font-bold text-navy-900">سخنران</h2>
+          <h2 className="text-sm font-bold text-charcoal">سخنران</h2>
           <div className="mt-3 flex items-center gap-3">
             <Avatar
               src={event.profiles.avatar_url}
@@ -279,7 +279,7 @@ export function EventTicketPanel({
               className="size-12 shrink-0 text-base"
             />
             <div className="min-w-0">
-              <p className="truncate text-sm font-bold text-navy-900">
+              <p className="truncate text-sm font-bold text-charcoal">
                 {event.profiles.full_name ?? "سخنران مهر دانا"}
               </p>
               {event.profiles.profession ? (

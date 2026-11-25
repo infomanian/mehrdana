@@ -52,7 +52,7 @@ export function AttendeeCard({
         className="mx-auto size-16 text-xl"
       />
 
-      <h3 className="mt-3 truncate text-base font-bold text-navy-900">
+      <h3 className="mt-3 truncate text-base font-bold text-charcoal">
         {attendee.full_name ?? "عضو مهر دانا"}
       </h3>
       {attendee.profession ? (
@@ -86,7 +86,7 @@ export function AttendeeCard({
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[11px] text-navy-800 hover:underline"
+                className="text-[11px] text-charcoal hover:underline"
               >
                 {link.label}
               </a>

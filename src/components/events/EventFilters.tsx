@@ -31,7 +31,7 @@ export function EventFilters({
   return (
     <div className="space-y-4">
       <nav aria-label="فیلتر وضعیت رویداد">
-        <ul className="flex flex-wrap gap-1 rounded-full border border-line bg-surface p-1">
+        <ul className="flex w-full flex-wrap gap-1 rounded-full border border-line bg-surface p-1 sm:w-fit">
           {statusTabs.map((tab) => {
             const isActive = tab.value === activeStatus;
             return (
@@ -42,8 +42,8 @@ export function EventFilters({
                   className={cn(
                     "flex min-h-10 items-center justify-center whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors",
                     isActive
-                      ? "bg-navy-800 text-white"
-                      : "text-ink-muted hover:bg-canvas hover:text-navy-900",
+                      ? "bg-charcoal text-cream"
+                      : "text-ink-muted hover:bg-canvas hover:text-charcoal",
                   )}
                 >
                   {tab.label}
@@ -63,8 +63,8 @@ export function EventFilters({
               className={cn(
                 "inline-flex rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
                 !activeCategory
-                  ? "border-navy-800 bg-navy-800 text-white"
-                  : "border-line bg-surface text-ink-muted hover:border-navy-800/25 hover:text-navy-900",
+                  ? "border-charcoal bg-charcoal text-cream"
+                  : "border-line bg-surface text-ink-muted hover:border-charcoal/30 hover:text-charcoal",
               )}
             >
               همه دسته‌ها
@@ -81,8 +81,8 @@ export function EventFilters({
                   className={cn(
                     "inline-flex rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
                     isActive
-                      ? "border-verified-strong bg-verified/12 text-verified-strong"
-                      : "border-line bg-surface text-ink-muted hover:border-navy-800/25 hover:text-navy-900",
+                      ? "border-clay bg-clay/10 text-clay-strong"
+                      : "border-line bg-surface text-ink-muted hover:border-charcoal/30 hover:text-charcoal",
                   )}
                 >
                   {category.name}

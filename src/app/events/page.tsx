@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 
 import { EventCard } from "@/components/events/EventCard";
 import { EventFilters } from "@/components/events/EventFilters";
-import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { OfflineIcon } from "@/components/ui/icons";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { isSupabaseConfigured } from "@/lib/env";
 import { listCategories, listEvents } from "@/lib/events";
 import { getServerClient } from "@/lib/supabase/server";
@@ -71,26 +71,20 @@ export default async function EventsPage({
 
   return (
     <>
-      <section className="bg-navy-900 text-white">
-        <Container className="py-12 sm:py-16">
-          <Badge tone="onDark">ویترین رویدادها</Badge>
-          <h1 className="mt-4 text-3xl font-bold leading-[1.4] sm:text-4xl">
-            رویدادهای مهر دانا
-          </h1>
-          <p className="mt-3 max-w-2xl text-sm leading-8 text-white/80 sm:text-base">
-            رویدادهای حضوری و آنلاین را ببینید، بلیت بگیرید و با آدم‌های هم‌مسیر آشنا شوید.
-          </p>
-        </Container>
-      </section>
+      <PageHeader
+        eyebrow="ویترین رویدادها"
+        title="رویدادهای مهر دانا"
+        description="رویدادهای حضوری و آنلاین را ببینید، بلیت بگیرید و با آدم‌های هم‌مسیر آشنا شوید."
+      />
 
-      <section className="py-8 sm:py-10">
+      <section className="py-10 sm:py-14">
         <Container>
           {!configured || loadError ? (
             <Card className="mx-auto max-w-lg p-8 text-center">
-              <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-navy-800/8 text-navy-800">
+              <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-sand/70 text-charcoal">
                 <OfflineIcon className="size-6" />
               </span>
-              <h2 className="mt-4 text-base font-bold text-navy-900">
+              <h2 className="mt-4 font-display text-lg font-medium text-charcoal">
                 فهرست رویدادها در دسترس نیست
               </h2>
               <p className="mt-2 text-sm leading-7 text-ink-muted">
@@ -107,7 +101,7 @@ export default async function EventsPage({
 
               {items.length === 0 ? (
                 <Card className="mt-6 p-10 text-center">
-                  <h2 className="text-base font-bold text-navy-900">
+                  <h2 className="font-display text-lg font-medium text-charcoal">
                     {category && !categoryKnown
                       ? "این دسته‌بندی وجود ندارد."
                       : status === "past"

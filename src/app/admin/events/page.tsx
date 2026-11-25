@@ -40,7 +40,7 @@ export default async function AdminEventsPage() {
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-navy-900">مدیریت رویدادها</h1>
+          <h1 className="text-2xl font-bold text-charcoal">مدیریت رویدادها</h1>
           <p className="mt-1 text-sm leading-7 text-ink-muted">
             ساخت و ویرایش رویدادها، قیمت‌ها، کاور و لینک‌های اختصاصی.
           </p>
@@ -51,7 +51,7 @@ export default async function AdminEventsPage() {
 
       {events.length === 0 ? (
         <Card className="mt-6 p-10 text-center">
-          <h2 className="text-base font-bold text-navy-900">هنوز رویدادی ساخته نشده است</h2>
+          <h2 className="text-base font-bold text-charcoal">هنوز رویدادی ساخته نشده است</h2>
           <p className="mx-auto mt-2 max-w-md text-sm leading-7 text-ink-muted">
             اولین رویداد را بسازید تا در ویترین سایت نمایش داده شود. کاور و لینک‌های
             اختصاصی را بعداً از صفحه ویرایش اضافه کنید.
@@ -84,7 +84,7 @@ export default async function AdminEventsPage() {
               <tbody>
                 {events.map((event) => (
                   <tr key={event.id} className="border-t border-line align-middle">
-                    <td className="px-5 py-3 font-medium text-navy-900">{event.title}</td>
+                    <td className="px-5 py-3 font-medium text-charcoal">{event.title}</td>
                     <td className="px-3 py-3">
                       <EventStatusBadge status={event.status} />
                     </td>
@@ -97,7 +97,7 @@ export default async function AdminEventsPage() {
                     <td className="px-5 py-3 text-end">
                       <Link
                         href={`/admin/events/${event.id}`}
-                        className="text-xs font-medium text-navy-800 hover:underline"
+                        className="text-xs font-medium text-charcoal hover:underline"
                       >
                         ویرایش
                       </Link>
@@ -114,7 +114,7 @@ export default async function AdminEventsPage() {
               <li key={event.id}>
                 <Card className="p-4">
                   <div className="flex items-start justify-between gap-3">
-                    <p className="font-medium text-navy-900">{event.title}</p>
+                    <p className="font-medium text-charcoal">{event.title}</p>
                     <EventStatusBadge status={event.status} />
                   </div>
 
@@ -128,7 +128,7 @@ export default async function AdminEventsPage() {
 
                   <Link
                     href={`/admin/events/${event.id}`}
-                    className="mt-3 inline-flex text-sm font-medium text-navy-800 hover:underline"
+                    className="mt-3 inline-flex text-sm font-medium text-charcoal hover:underline"
                   >
                     ویرایش رویداد
                   </Link>
