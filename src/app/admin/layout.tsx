@@ -19,40 +19,40 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <Container className="flex min-h-14 flex-wrap items-center justify-between gap-3 py-2">
           <div className="flex items-center gap-3">
             <Badge tone="navy">مدیریت</Badge>
-            <nav aria-label="بخش‌های مدیریت">
+            <nav aria-label="بخش‌های مدیریت" className="flex flex-wrap items-center gap-2 sm:gap-3">
               <Link
                 href="/admin"
-                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas whitespace-nowrap"
               >
                 داشبورد
               </Link>
               <Link
                 href="/admin/events"
-                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas whitespace-nowrap"
               >
                 رویدادها
               </Link>
               <Link
                 href="/admin/categories"
-                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas whitespace-nowrap"
               >
                 دسته‌بندی‌ها
               </Link>
               <Link
                 href="/admin/tickets"
-                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas whitespace-nowrap"
               >
                 بلیت‌ها
               </Link>
               <Link
                 href="/admin/users"
-                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas whitespace-nowrap"
               >
                 کاربران
               </Link>
               <Link
                 href="/admin/reports"
-                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas whitespace-nowrap"
               >
                 گزارش‌ها
               </Link>
