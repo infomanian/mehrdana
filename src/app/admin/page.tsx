@@ -52,7 +52,7 @@ export default async function AdminDashboardPage() {
           <Link key={stat.label} href={stat.href}>
             <Card interactive className="p-5">
               <p className="text-3xl font-bold text-navy">{stat.value}</p>
-              <p className="mt-1 text-sm text-ink-muted">{stat.label}</p>
+              <p className="mt-1 text-base text-ink-muted">{stat.label}</p>
             </Card>
           </Link>
         ))}
@@ -64,7 +64,7 @@ export default async function AdminDashboardPage() {
           <Link
             key={link.href}
             href={link.href}
-            className="rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium text-navy transition-colors hover:border-navy/25 hover:bg-canvas"
+            className="rounded-full border border-line bg-surface px-4 py-2 text-base font-medium text-navy transition-colors hover:border-navy/25 hover:bg-canvas"
           >
             {link.label}
           </Link>

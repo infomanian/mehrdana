@@ -22,37 +22,37 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <nav aria-label="بخش‌های مدیریت">
               <Link
                 href="/admin"
-                className="rounded-full px-3 py-1.5 text-sm font-medium text-navy hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas"
               >
                 داشبورد
               </Link>
               <Link
                 href="/admin/events"
-                className="rounded-full px-3 py-1.5 text-sm font-medium text-navy hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas"
               >
                 رویدادها
               </Link>
               <Link
                 href="/admin/categories"
-                className="rounded-full px-3 py-1.5 text-sm font-medium text-navy hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas"
               >
                 دسته‌بندی‌ها
               </Link>
               <Link
                 href="/admin/tickets"
-                className="rounded-full px-3 py-1.5 text-sm font-medium text-navy hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas"
               >
                 بلیت‌ها
               </Link>
               <Link
                 href="/admin/users"
-                className="rounded-full px-3 py-1.5 text-sm font-medium text-navy hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas"
               >
                 کاربران
               </Link>
               <Link
                 href="/admin/reports"
-                className="rounded-full px-3 py-1.5 text-sm font-medium text-navy hover:bg-canvas"
+                className="rounded-full px-3 py-1.5 text-[15px] font-medium text-navy hover:bg-canvas"
               >
                 گزارش‌ها
               </Link>
