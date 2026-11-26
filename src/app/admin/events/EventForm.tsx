@@ -121,7 +121,7 @@ export function EventForm({
               defaultValue={defaults.status}
               className={cn(inputStyles, "appearance-none")}
             >
-              <option value="upcoming">پیشرو</option>
+              <option value="upcoming">آینده</option>
               <option value="live">در حال برگزاری</option>
               <option value="past">برگزارشده</option>
             </select>

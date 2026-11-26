@@ -24,7 +24,7 @@ export function EventFilters({
   categories: CategoryOption[];
 }) {
   const statusTabs: { value: ListStatus; label: string }[] = [
-    { value: "upcoming", label: "رویدادهای پیشرو" },
+    { value: "upcoming", label: "رویدادهای آینده" },
     { value: "past", label: "برگزارشده‌ها" },
   ];
 

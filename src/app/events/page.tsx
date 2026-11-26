@@ -106,7 +106,7 @@ export default async function EventsPage({
                       ? "این دسته‌بندی وجود ندارد."
                       : status === "past"
                         ? "هنوز رویداد برگزارشده‌ای ثبت نشده است."
-                        : "هنوز رویداد پیشرویی ثبت نشده است."}
+                        : "هنوز رویداد آینده‌ای ثبت نشده است."}
                   </h2>
                   <p className="mx-auto mt-2 max-w-md text-sm leading-7 text-ink-muted">
                     رویدادهای جدید به‌زودی به این صفحه اضافه می‌شوند.

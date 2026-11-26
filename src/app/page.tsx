@@ -378,7 +378,7 @@ export default function HomePage() {
             اولین قدم، یک رویداد است.
           </h2>
           <p className="mx-auto mt-4 max-w-md text-sm leading-8 text-ink-muted">
-            رویدادهای پیشرو را ببینید؛ اگر هنوز چیزی ثبت نشده باشد، حساب بسازید تا خبر
+            رویدادهای آینده را ببینید؛ اگر هنوز چیزی ثبت نشده باشد، حساب بسازید تا خبر
             اولین رویداد به شما برسد.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">

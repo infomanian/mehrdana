@@ -15,7 +15,7 @@ export const ticketTypeLabels: Record<TicketType, string> = {
 };
 
 export const eventStatusLabels: Record<EventStatus, string> = {
-  upcoming: "پیشرو",
+  upcoming: "آینده",
   live: "در حال برگزاری",
   past: "برگزارشده",
 };
