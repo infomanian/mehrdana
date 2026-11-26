@@ -6,6 +6,7 @@ import type { ChangeEvent } from "react";
 
 import { saveAvatarPath } from "./actions";
 import { Avatar } from "@/components/ui/Avatar";
+import { PencilIcon } from "@/components/ui/icons";
 import { getBrowserClient } from "@/lib/supabase/client";
 
 const MAX_BYTES = 2 * 1024 * 1024;
@@ -138,6 +139,13 @@ export function AvatarEditor({
           {busy ? "در حال ارسال…" : "تغییر تصویر"}
         </span>
       </button>
+
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute end-0 bottom-0 z-10 flex size-6 items-center justify-center rounded-full border-2 border-surface bg-navy text-cream shadow-sm"
+      >
+        <PencilIcon className="size-3" />
+      </span>
 
       <input
         ref={inputRef}

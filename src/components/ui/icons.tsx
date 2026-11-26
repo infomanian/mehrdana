@@ -162,6 +162,15 @@ export function PlayIcon(props: IconProps) {
   );
 }
 
+export function PencilIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 20h4L18.5 9.5a2.12 2.12 0 0 0-3-3L5 17v3z" />
+      <path d="M13.5 6.5l4 4" />
+    </svg>
+  );
+}
+
 /**
  * The brand emblem on its own. The full logo file also contains the wordmark and
  * the tagline; the header renders those as real text so they stay legible at any
