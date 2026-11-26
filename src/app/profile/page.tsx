@@ -10,9 +10,10 @@ import { SwitchSubmit } from "@/components/ui/SwitchSubmit";
 import { requireSession } from "@/lib/auth";
 import { formatDate } from "@/lib/format";
 import { roleLabels } from "@/lib/labels";
-import type { Json } from "@/types/database";
+import type { EventStatus, Json } from "@/types/database";
 
 import { AvatarEditor } from "./AvatarEditor";
+import { MyEventsList, type MyEventRow } from "./MyEventsList";
 import { ProfileForm, type ProfileFormValues } from "./ProfileForm";
 import { TicketsTable, type TicketHistoryRow } from "./TicketsTable";
 import { setProfileVisibility } from "./actions";
@@ -23,12 +24,26 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-type TabId = "account" | "payments";
+type TabId = "account" | "events" | "payments";
 
 const tabs: { id: TabId; label: string; href: string }[] = [
   { id: "account", label: "حساب کاربری", href: "/profile" },
+  { id: "events", label: "رویدادهای شما", href: "/profile?tab=events" },
   { id: "payments", label: "بلیت‌ها و پرداخت‌ها", href: "/profile?tab=payments" },
 ];
+
+type MyEventTicketRow = {
+  event_id: string;
+  events: {
+    id: string;
+    title: string;
+    status: EventStatus;
+    event_date: string;
+    location_address: string | null;
+    cover_image_url: string | null;
+    categories: { name: string } | null;
+  } | null;
+};
 
 function readSocialLink(links: Json, key: string): string {
   if (!links || typeof links !== "object" || Array.isArray(links)) return "";
@@ -43,7 +58,8 @@ export default async function ProfilePage({
 }) {
   const params = await searchParams;
   const tabParam = Array.isArray(params.tab) ? params.tab[0] : params.tab;
-  const activeTab: TabId = tabParam === "payments" ? "payments" : "account";
+  const activeTab: TabId =
+    tabParam === "payments" ? "payments" : tabParam === "events" ? "events" : "account";
 
   const { supabase, user } = await requireSession("/profile");
 
@@ -59,7 +75,19 @@ export default async function ProfilePage({
       ? supabase.from("categories").select("name, slug").order("name")
       : Promise.resolve({ data: [] as { name: string; slug: string }[], error: null });
 
-  const [profileResult, ticketsResult, categoriesResult] = await Promise.all([
+  const myEventsPromise =
+    activeTab === "events"
+      ? supabase
+          .from("tickets")
+          .select(
+            "event_id, events(id, title, status, event_date, location_address, cover_image_url, categories(name))",
+          )
+          .eq("user_id", user.id)
+          .eq("status", "verified")
+          .limit(100)
+      : Promise.resolve({ data: [] as MyEventTicketRow[], error: null });
+
+  const [profileResult, ticketsResult, categoriesResult, myEventsResult] = await Promise.all([
     supabase
       .from("profiles")
       .select(
@@ -69,6 +97,7 @@ export default async function ProfilePage({
       .maybeSingle(),
     ticketsPromise,
     categoriesPromise,
+    myEventsPromise,
   ]);
 
   if (profileResult.error) throw new Error("profile-unavailable");
@@ -89,6 +118,35 @@ export default async function ProfilePage({
 
   const categories = (categoriesResult.data ?? []).map((category) => category.name);
   const tickets = ticketsResult.data ?? [];
+
+  // A user can hold several ticket types for the same event; collapse them into
+  // one entry per event. Upcoming/live events come first (soonest first), then
+  // past events (most recent first).
+  const myEvents: MyEventRow[] = [];
+  {
+    const seen = new Set<string>();
+    for (const row of (myEventsResult.data ?? []) as MyEventTicketRow[]) {
+      const event = row.events;
+      if (!event || seen.has(event.id)) continue;
+      seen.add(event.id);
+      myEvents.push({
+        eventId: event.id,
+        title: event.title,
+        status: event.status,
+        eventDate: event.event_date,
+        locationAddress: event.location_address,
+        coverImageUrl: event.cover_image_url,
+        categoryName: event.categories?.name ?? null,
+      });
+    }
+  }
+  myEvents.sort((a, b) => {
+    const aPast = a.status === "past";
+    const bPast = b.status === "past";
+    if (aPast !== bPast) return aPast ? 1 : -1;
+    const delta = new Date(a.eventDate).getTime() - new Date(b.eventDate).getTime();
+    return aPast ? -delta : delta;
+  });
 
   return (
     <section className="py-8 sm:py-12">
@@ -214,6 +272,18 @@ export default async function ProfilePage({
                   </form>
                 </Card>
               </div>
+            ) : activeTab === "events" ? (
+              myEventsResult.error ? (
+                <p
+                  role="alert"
+                  className="rounded-xl border border-accent/25 bg-accent/8 px-4 py-3 text-xs leading-6 text-accent-strong"
+                >
+                  لیست رویدادهای شما در دسترس نیست. اگر این پیام تکرار شد، به پشتیبانی اطلاع
+                  دهید.
+                </p>
+              ) : (
+                <MyEventsList events={myEvents} />
+              )
             ) : (
               <>
                 {ticketsResult.error ? (
