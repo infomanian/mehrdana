@@ -12,15 +12,15 @@ import { UserMenu } from "./UserMenu";
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-rule/80 bg-cream/90 backdrop-blur-md">
-      <Container className="flex h-16 items-center justify-between gap-4">
-        <div className="flex min-w-0 items-center gap-6 lg:gap-10">
-          <Link href="/" className="flex shrink-0 items-center gap-2.5">
-            <BrandMark className="size-20 shrink-0 text-navy" />
+      <Container className="flex h-20 items-center justify-between gap-4 lg:h-24">
+        <div className="flex min-w-0 items-center gap-5 lg:gap-10">
+          <Link href="/" className="flex shrink-0 items-center gap-3">
+            <BrandMark className="size-14 shrink-0 sm:size-16 lg:size-20" />
             <span className="flex flex-col leading-tight">
-              <span className="font-display text-lg leading-none font-semibold text-navy">
+              <span className="font-display text-xl leading-none font-semibold text-navy sm:text-2xl">
                 {siteConfig.name}
               </span>
-              <span className="mt-1 hidden text-[10px] font-normal text-ink-muted sm:inline">
+              <span className="mt-1.5 text-[11px] leading-5 whitespace-nowrap font-normal text-ink-muted max-[359px]:hidden sm:text-xs">
                 {siteConfig.tagline}
               </span>
             </span>

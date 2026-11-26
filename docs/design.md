@@ -47,4 +47,6 @@ for the token source of truth.
 The authoritative palette lives in `docs/palette/` (`colors.jpg`,
 `logo-06.svg`). The SVG logo uses `navy #06253E` and `teal #00A69C`, which are
 mapped onto the design tokens above (`navy`, `teal`, `gold`) for the rest of the
-site.
+site. The lockup also carries the wordmark «مهر دانا» and the tagline
+«هر نفر دانا، با هم مهربان», which is stored in `siteConfig.tagline`; the
+header renders the emblem alone plus real text so the tagline stays legible.

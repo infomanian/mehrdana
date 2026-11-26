@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { signOutAction } from "@/app/actions";
-import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -13,7 +12,7 @@ import { formatDate } from "@/lib/format";
 import { roleLabels } from "@/lib/labels";
 import type { Json } from "@/types/database";
 
-import { AvatarUploader } from "./AvatarUploader";
+import { AvatarEditor } from "./AvatarEditor";
 import { ProfileForm, type ProfileFormValues } from "./ProfileForm";
 import { TicketsTable, type TicketHistoryRow } from "./TicketsTable";
 import { setProfileVisibility } from "./actions";
@@ -119,45 +118,35 @@ export default async function ProfilePage({
 
           <Card className="mt-5 overflow-hidden">
             <div className="p-5 sm:p-6">
-              <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-                <div className="flex min-w-0 items-center gap-4">
-                  <Avatar
-                    src={profile.avatar_url}
-                    name={profile.full_name}
-                    className="size-16 shrink-0 text-xl sm:size-20 sm:text-2xl"
-                  />
+              <div className="flex min-w-0 items-center gap-4 sm:gap-5">
+                <AvatarEditor
+                  userId={user.id}
+                  avatarUrl={profile.avatar_url}
+                  name={profile.full_name}
+                />
 
-                  <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h2 className="truncate text-lg font-bold text-navy">
-                        {profile.full_name ?? "کاربر مهر دانا"}
-                      </h2>
-                      <Badge tone="gold">{roleLabels[profile.role]}</Badge>
-                      {!profile.is_public ? <Badge>پروفایل مخفی</Badge> : null}
-                    </div>
-
-                    {user.email ? (
-                      <p
-                        dir="ltr"
-                        title={user.email}
-                        className="mt-1 truncate text-start text-xs text-ink-muted"
-                      >
-                        {user.email}
-                      </p>
-                    ) : null}
-
-                    <p className="mt-1 text-xs text-ink-muted">
-                      عضو از {formatDate(profile.created_at)}
-                    </p>
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h2 className="truncate text-lg font-bold text-navy">
+                      {profile.full_name ?? "کاربر مهر دانا"}
+                    </h2>
+                    <Badge tone="gold">{roleLabels[profile.role]}</Badge>
+                    {!profile.is_public ? <Badge>پروفایل مخفی</Badge> : null}
                   </div>
-                </div>
 
-                <div className="sm:max-w-[16rem]">
-                  <AvatarUploader
-                    userId={user.id}
-                    avatarUrl={profile.avatar_url}
-                    name={profile.full_name}
-                  />
+                  {user.email ? (
+                    <p
+                      dir="ltr"
+                      title={user.email}
+                      className="mt-1 truncate text-start text-xs text-ink-muted"
+                    >
+                      {user.email}
+                    </p>
+                  ) : null}
+
+                  <p className="mt-1 text-xs text-ink-muted">
+                    عضو از {formatDate(profile.created_at)}
+                  </p>
                 </div>
               </div>
             </div>

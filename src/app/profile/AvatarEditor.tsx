@@ -6,7 +6,6 @@ import type { ChangeEvent } from "react";
 
 import { saveAvatarPath } from "./actions";
 import { Avatar } from "@/components/ui/Avatar";
-import { buttonStyles } from "@/components/ui/Button";
 import { getBrowserClient } from "@/lib/supabase/client";
 
 const MAX_BYTES = 2 * 1024 * 1024;
@@ -19,11 +18,13 @@ function extensionFor(type: string): "jpg" | "png" | "webp" {
 }
 
 /**
- * Uploads straight from the browser to the `avatars` bucket. Storage rules
- * only allow writes inside `avatars/<own-user-id>/`, so the upload cannot
+ * The profile picture doubles as the upload control: clicking it opens the file
+ * picker and the picture is replaced in place, so there is no separate upload
+ * box. Uploads go straight from the browser to the `avatars` bucket; storage
+ * rules only allow writes inside `avatars/<own-user-id>/`, so the upload cannot
  * overwrite somebody else's picture. The server action then stores the URL.
  */
-export function AvatarUploader({
+export function AvatarEditor({
   userId,
   avatarUrl,
   name,
@@ -45,6 +46,13 @@ export function AvatarUploader({
     if (!preview) return;
     return () => URL.revokeObjectURL(preview);
   }, [preview]);
+
+  // Success messages fade away on their own; errors stay until the next attempt.
+  useEffect(() => {
+    if (!message || failed || busy) return;
+    const timer = window.setTimeout(() => setMessage(null), 4000);
+    return () => window.clearTimeout(timer);
+  }, [message, failed, busy]);
 
   async function handleFile(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
@@ -98,67 +106,59 @@ export function AvatarUploader({
   }
 
   return (
-    <div>
-      <div className="flex items-center gap-4">
-        <div
-          className="relative cursor-pointer"
-          onClick={busy ? undefined : () => inputRef.current?.click()}
+    <div className="relative shrink-0">
+      <button
+        type="button"
+        onClick={() => inputRef.current?.click()}
+        disabled={busy}
+        aria-label="تغییر تصویر پروفایل"
+        title="تغییر تصویر پروفایل"
+        className="group relative block size-16 overflow-hidden rounded-full sm:size-20"
+      >
+        {preview ? (
+          // A blob: URL cannot go through next/image, it is only a local preview.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={preview}
+            alt="پیش‌نمایش تصویر پروفایل"
+            className="size-full object-cover"
+          />
+        ) : (
+          <Avatar src={avatarUrl} name={name} className="size-full text-xl sm:text-2xl" />
+        )}
+
+        <span
+          aria-hidden="true"
+          className={`absolute inset-0 flex items-center justify-center rounded-full bg-navy/60 px-2 text-center text-[10px] leading-4 font-medium text-white ${
+            busy
+              ? "opacity-100"
+              : "opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+          }`}
         >
-          {preview ? (
-            // A blob: URL cannot go through next/image, it is only a local preview.
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={preview}
-              alt="پیش‌نمایش تصویر پروفایل"
-              className="size-20 rounded-full object-cover"
-            />
-          ) : (
-            <Avatar src={avatarUrl} name={name} className="size-20 text-2xl" />
-          )}
-          {busy ? (
-            <span
-              aria-hidden="true"
-              className="absolute inset-0 rounded-full bg-navy/25"
-            />
-          ) : null}
-        </div>
+          {busy ? "در حال ارسال…" : "تغییر تصویر"}
+        </span>
+      </button>
 
-        <div className="min-w-0">
-          <p className="text-sm font-medium text-navy">تصویر پروفایل</p>
-          <p className="mt-0.5 text-xs leading-6 text-ink-muted">
-            JPG، PNG یا WebP — حداکثر ۲ مگابایت.
-          </p>
-
-          <div className="mt-2 flex items-center gap-2">
-            <label
-              htmlFor="avatar-file"
-              className={buttonStyles({
-                variant: "outline",
-                size: "sm",
-                className: busy ? "pointer-events-none opacity-60" : "cursor-pointer",
-              })}
-            >
-              {busy ? "در حال ارسال…" : "انتخاب تصویر"}
-            </label>
-            <input
-              ref={inputRef}
-              id="avatar-file"
-              type="file"
-              accept="image/png,image/jpeg,image/webp"
-              disabled={busy}
-              onChange={handleFile}
-              className="sr-only"
-            />
-          </div>
-        </div>
-      </div>
+      <input
+        ref={inputRef}
+        id="avatar-file"
+        type="file"
+        accept="image/png,image/jpeg,image/webp"
+        disabled={busy}
+        onChange={handleFile}
+        tabIndex={-1}
+        aria-hidden="true"
+        className="sr-only"
+      />
 
       <p
         role="status"
         aria-live="polite"
         className={
           message
-            ? `mt-3 text-xs leading-6 ${failed ? "text-accent-strong" : "text-verified-strong"}`
+            ? `fixed bottom-20 left-1/2 z-50 -translate-x-1/2 whitespace-nowrap rounded-full px-4 py-2 text-xs text-white shadow-lg sm:bottom-6 ${
+                failed ? "bg-accent" : "bg-navy"
+              }`
             : "sr-only"
         }
       >
