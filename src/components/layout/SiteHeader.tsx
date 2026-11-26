@@ -15,7 +15,7 @@ export function SiteHeader() {
       <Container className="flex h-16 items-center justify-between gap-4">
         <div className="flex min-w-0 items-center gap-6 lg:gap-10">
           <Link href="/" className="flex shrink-0 items-center gap-2.5">
-            <BrandMark className="size-10 shrink-0 text-navy" />
+            <BrandMark className="size-20 shrink-0 text-navy" />
             <span className="flex flex-col leading-tight">
               <span className="font-display text-lg leading-none font-semibold text-navy">
                 {siteConfig.name}

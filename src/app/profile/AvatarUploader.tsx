@@ -100,7 +100,10 @@ export function AvatarUploader({
   return (
     <div>
       <div className="flex items-center gap-4">
-        <div className="relative">
+        <div
+          className="relative cursor-pointer"
+          onClick={busy ? undefined : () => inputRef.current?.click()}
+        >
           {preview ? (
             // A blob: URL cannot go through next/image, it is only a local preview.
             // eslint-disable-next-line @next/next/no-img-element
