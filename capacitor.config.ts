@@ -12,7 +12,7 @@ const config: CapacitorConfig = {
   appName: "مهر دانا",
   webDir: "capacitor-fallback",
   server: {
-    url: "https://mehrdana-src.vercel.app",
+    url: "https://mehrdana-src.vercel.app/profile",
     cleartext: false,
   },
   android: {
