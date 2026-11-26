@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">مهر دانا</string>
+    <string name="title_activity_main">مهر دانا</string>
+    <string name="package_name">ir.mehrdana.app</string>
+    <string name="custom_url_scheme">ir.mehrdana.app</string>
+</resources>
