@@ -10,9 +10,11 @@ export type LoginState = {
    * 60-second resend countdown. Never rendered.
    */
   sentAt?: number;
+  /** Whether the user asked to stay signed in across restarts. */
+  remember: boolean;
 };
 
-export const initialLoginState: LoginState = { step: "email", email: "" };
+export const initialLoginState: LoginState = { step: "email", email: "", remember: false };
 
 export const SERVICE_UNAVAILABLE_MESSAGE =
   "سرویس ورود هنوز به سرور وصل نشده است. لطفاً بعداً تلاش کنید.";

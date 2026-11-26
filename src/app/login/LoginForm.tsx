@@ -78,6 +78,7 @@ export function LoginForm({
             <input type="hidden" name="email" value={email} />
             <input type="hidden" name="next" value={nextPath} />
             <input type="hidden" name="sentAt" value={requestState.sentAt ?? ""} />
+            <input type="hidden" name="remember" value={requestState.remember ? "1" : ""} />
 
             <Field id="token" label="کد ورود" hint={TOKEN_HINT} error={codeError}>
               <input
@@ -126,6 +127,7 @@ export function LoginForm({
             <ResendForm
               key={requestState.sentAt}
               email={email}
+              remember={requestState.remember}
               action={requestAction}
               disabled={!configured}
             />
@@ -152,6 +154,22 @@ export function LoginForm({
             />
           </Field>
 
+          <label className="flex cursor-pointer items-start gap-2.5 text-sm text-ink">
+            <input
+              type="checkbox"
+              name="remember"
+              value="1"
+              defaultChecked={requestState.remember}
+              className="mt-0.5 size-4 shrink-0 cursor-pointer rounded border-line accent-teal-strong"
+            />
+            <span className="leading-6">
+              مرا به خاطر بسپار
+              <span className="block text-xs leading-6 text-ink-muted">
+                با فعال بودن این گزینه، پس از بستن برنامه هم وارد می‌مانید.
+              </span>
+            </span>
+          </label>
+
           <SubmitButton
             size="lg"
             className="w-full"
@@ -174,10 +192,12 @@ export function LoginForm({
 
 function ResendForm({
   email,
+  remember,
   action,
   disabled,
 }: {
   email: string;
+  remember: boolean;
   action: (payload: FormData) => void;
   disabled: boolean;
 }) {
@@ -192,6 +212,7 @@ function ResendForm({
   return (
     <form action={action}>
       <input type="hidden" name="email" value={email} />
+      <input type="hidden" name="remember" value={remember ? "1" : ""} />
       <SubmitButton
         variant="ghost"
         size="sm"

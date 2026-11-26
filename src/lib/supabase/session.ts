@@ -4,6 +4,12 @@ import { NextResponse, type NextRequest } from "next/server";
 import { isSupabaseConfigured, supabaseAnonKey, supabaseUrl } from "@/lib/env";
 import type { Database } from "@/types/database";
 
+import {
+  SESSION_MODE_COOKIE,
+  applySessionMode,
+  type SessionMode,
+} from "./session-mode";
+
 /** Matches the session cookie written by @supabase/ssr, e.g. sb-abcdef-auth-token. */
 const AUTH_COOKIE_PATTERN = /^sb-.+-auth-token(\.\d+)?$/;
 
@@ -45,6 +51,9 @@ export async function updateSession(request: NextRequest): Promise<NextResponse>
 
   if (!isSupabaseConfigured || !hasSessionCookie) return response;
 
+  const mode: SessionMode =
+    request.cookies.get(SESSION_MODE_COOKIE)?.value === "persistent" ? "persistent" : "session";
+
   const supabase = createServerClient<Database>(supabaseUrl, supabaseAnonKey, {
     cookies: {
       getAll() {
@@ -59,7 +68,7 @@ export async function updateSession(request: NextRequest): Promise<NextResponse>
         }
         response = NextResponse.next({ request });
         for (const { name, value, options } of cookiesToSet) {
-          response.cookies.set(name, value, options);
+          response.cookies.set(name, value, applySessionMode(options, mode));
         }
       },
     },
