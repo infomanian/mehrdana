@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
+import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { inputStyles } from "@/components/ui/Field";
@@ -18,6 +20,7 @@ export const metadata: Metadata = {
 type UserRow = {
   id: string;
   full_name: string | null;
+  avatar_url: string | null;
   role: UserRole;
   is_banned: boolean;
   created_at: string;
@@ -35,7 +38,7 @@ export default async function AdminUsersPage({
 
   let builder = supabase
     .from("profiles")
-    .select("id, full_name, role, is_banned, created_at")
+    .select("id, full_name, avatar_url, role, is_banned, created_at")
     .order("created_at", { ascending: false })
     .limit(50);
 
@@ -82,18 +85,30 @@ export default async function AdminUsersPage({
           <ul className="divide-y divide-line">
             {users.map((user) => (
               <li key={user.id} className="flex items-center justify-between gap-3 px-5 py-3">
-                <div className="min-w-0">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <p className="truncate text-sm font-medium text-navy">
-                      {user.full_name ?? "کاربر مهر دانا"}
+                <Link
+                  href={`/admin/users/${user.id}`}
+                  className="flex min-w-0 flex-1 items-center gap-3"
+                >
+                  <Avatar
+                    src={user.avatar_url}
+                    name={user.full_name}
+                    className="size-9 shrink-0 text-sm"
+                  />
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="truncate text-sm font-medium text-navy transition-colors hover:text-teal-strong">
+                        {user.full_name ?? "کاربر مهر دانا"}
+                      </p>
+                      <Badge tone="gold">{roleLabels[user.role]}</Badge>
+                      {user.is_banned ? (
+                        <Badge className="bg-red-50 text-red-700">بن‌شده</Badge>
+                      ) : null}
+                    </div>
+                    <p className="mt-0.5 text-xs text-ink-muted">
+                      عضویت از {formatDate(user.created_at)}
                     </p>
-                    <Badge tone="gold">{roleLabels[user.role]}</Badge>
-                    {user.is_banned ? (
-                      <Badge className="bg-red-50 text-red-700">بن‌شده</Badge>
-                    ) : null}
                   </div>
-                  <p className="mt-0.5 text-xs text-ink-muted">عضویت از {formatDate(user.created_at)}</p>
-                </div>
+                </Link>
 
                 <BanButton userId={user.id} banned={user.is_banned} />
               </li>
